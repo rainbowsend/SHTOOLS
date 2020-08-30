@@ -608,7 +608,7 @@
         character(filename_d1) :: filename2
         filename2 = TRANSFER(filename,filename2)
         
-        call SHRead(filename2,cilm,lmax,exitstatus=exitstatus)
+        call SHRead(filename2,cilm,lmax,header=header,error=error,skip=skip,exitstatus=exitstatus)
     end subroutine cbindSHRead
 
     subroutine cbindSHRead2(filename,filename_d1,cilm,cilm_d,lmax,gm,r0_pot,error&

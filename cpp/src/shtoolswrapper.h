@@ -60,7 +60,8 @@ inline double cpp_make_grid_point( const std::vector<double>& cilm, double lat, 
 
  }
  
-  inline std::vector<double> cpp_sh_read( const std::string& filename, int degree  )
+  inline std::vector<double> cpp_sh_read( const std::string& filename, int degree,
+                                          int skip = 0, std::vector<double>* error = nullptr  )
   {
   
 
@@ -68,13 +69,18 @@ inline double cpp_make_grid_point( const std::vector<double>& cilm, double lat, 
     int cilm_dim = degree+1;
 
     std::vector<double> cilm(2*cilm_dim*cilm_dim);
-    std::vector<double> error(2*cilm_dim*cilm_dim);
     
+    double* error_ptr = nullptr;
+    int error_dim = 0;
+    if ( error ){
+        error_ptr = &error->at(0);
+        error_dim = cilm_dim;
+        error->resize( cilm.size() );
+    }
+        
     double* header = nullptr;
-    int* header_d = nullptr;
-    int* skip = nullptr;
+    int header_d = 0;
 
-    
     int s = filename.size();
     
     cbind_sh_read(
@@ -82,9 +88,9 @@ inline double cpp_make_grid_point( const std::vector<double>& cilm, double lat, 
                       &s,
                       &cilm[0], &cilm_dim,
                       &degree,
-                      skip,
-                      header, header_d,
-                      &error[0], &n2, &cilm_dim, &cilm_dim,
+                      &skip,
+                      header, &header_d,
+                      error_ptr, &n2, &error_dim, &error_dim,
                       &exitstatus
                      );
     

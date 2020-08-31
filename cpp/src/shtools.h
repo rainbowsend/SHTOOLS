@@ -6,10 +6,11 @@ namespace shtools {
 
 constexpr int n2 = 2;
 
+// n is number of cosine coefficents or sine coefficents
 inline int
-deg_2_n(int deg)
+n_to_deg(int n)
 {
-  return std::sqrt(1. / 4. + 2. * deg) - 3. / 2.;
+  return std::sqrt(1. / 4. + 2. * n) - 3. / 2.;
 }
 
 inline double
@@ -29,18 +30,23 @@ make_grid_point(const std::vector<double>& cilm,
     &cilm[0], &cilmd, &lmax, &lat, &lon, &norm, &csphase, &dealloc);
 }
 
-inline void
-sh_cindex_to_cilm(std::vector<double> cindex,
-                  std::vector<double> cilm,
-                  int degmax)
+inline std::vector<double>
+sh_cindex_to_cilm(const std::vector<double>& cindex, int degmax=-1)
 {
 
   int exitstatus;
-
+  
   int n = cindex.size() / 2;
-  int m = deg_2_n(n);
-
-  cSHCindexToCilm(&cindex[0], &n2, &n, &cilm[0], &m, &degmax, &exitstatus);
+  int cilm_dim = n_to_deg(n)+1;
+  
+  if(degmax < 0){
+      degmax = cilm_dim-1;
+  }
+    
+  std::vector<double> cilm(2 * cilm_dim * cilm_dim);
+  cSHCindexToCilm(&cindex[0], &n2, &n, &cilm[0], &cilm_dim, &degmax, &exitstatus);
+  
+  return cilm;
 }
 
 inline std::vector<double>

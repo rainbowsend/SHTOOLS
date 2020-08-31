@@ -1,31 +1,12 @@
 #pragma once
 
+#include "sh_tools_wrapper.h"
+
+namespace shtools{
+
 constexpr int n2 = 2;
 
-extern "C"
-{
-     void cbind_sh_cindex_to_cilm( const double* cindex, const int* cindex_d0, const int* cindex_d1,
-                                   double* cilm, const int* cilm_d0,
-                                   const int* degmax,
-                                   int* exitstatus);
-     
-     void cbind_sh_read(    const char* filename, 
-                            int* flen, 
-                            double* cilm, const int* cilm_d0,
-                            int* lmax,
-                            int* skip,
-                            double* header, const int* header_d1,
-                            double* error, const int* error_d0, const int* error_d1, const int* error_d2,
-                            int* exitstatus);
-     
-     double cbind_make_grid_point( const double* cilm, const int* cilm_d0,
-                                   const int* lmax,
-                                   const double* lat, const double* lon,
-                                   const int* norm,
-                                   const int* csphase,
-                                   const int* dealloc);
 
-}
 
 inline int deg_2_n(int deg){
     return std::sqrt( 1./4. + 2.*deg ) - 3./2.;
@@ -102,9 +83,4 @@ inline double cpp_make_grid_point( const std::vector<double>& cilm, double lat, 
  typedef Eigen::Matrix<double, 2, Eigen::Dynamic, Eigen::ColMajor> Cindex;
  typedef Eigen::Tensor<double, 3, Eigen::ColMajor> Cilm;
  
-//  inline void cpp_shc_index_to_cilm1( Cindex cindex, Cilm cilm, int degmax )
-//  {
-//      
-//  }
-
-
+}

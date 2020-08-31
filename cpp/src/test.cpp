@@ -12,7 +12,7 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
 
-#include "shtoolswrapper.h"
+#include "shtools.h"
 
 
 int
@@ -24,9 +24,9 @@ main(int argc, char** argv)
 
   int lmax = 15;
   int n = lmax+1; 
-  std::vector<double> mars = cpp_sh_read(infile, lmax );
+  std::vector<double> mars = shtools::cpp_sh_read(infile, lmax );
     
-  Eigen::TensorMap<Cilm> mars_tensor(&mars[0], 2, n, n);
+  Eigen::TensorMap<shtools::Cilm> mars_tensor(&mars[0], 2, n, n);
   
   for(int i = 0; i < 2; ++i){
       for(int j = 0; j < n; ++j){
@@ -38,7 +38,7 @@ main(int argc, char** argv)
       std::cout << std::string(13*n,'-') << std::endl;
   }
   
-  double val = cpp_make_grid_point( mars, 10.0, 30.0);
+  double val = shtools::cpp_make_grid_point( mars, 10.0, 30.0);
   std::cout <<  std::setprecision(16) << val << std::endl;
   std::cout <<  "diff to python " << val-3395259.548270001 << std::endl;
   

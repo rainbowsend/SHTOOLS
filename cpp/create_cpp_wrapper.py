@@ -16,7 +16,7 @@ TYPEMAP = {'integer':'int',
 
 # ==== MAIN FUNCTION ====
 def main():
-    fname_wrapper = '../src/CbindWrapper.f95'
+    fname_wrapper = '../src/cWrapper.f95'
     fname_signature = 'src/sh_tools_wrapper.h'
 
     print('now cracking Fortran file ' + fname_wrapper + ' using f2py function...')
@@ -36,7 +36,7 @@ def main():
                 
                 return_type = TYPEMAP[subroutine['vars'][subroutine['name']]['typespec']]
                 
-            newline = return_type + ' ' + camel_to_snake( subroutine['name']) \
+            newline = return_type + ' ' + subroutine['name'] \
                 + '( ' + create_signature(subroutine) + ')' + ';'
             outfile.write(newline+'\n')
         outfile.write('}\n}\n')

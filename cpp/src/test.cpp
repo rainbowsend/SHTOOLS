@@ -20,7 +20,7 @@ main(int argc, char** argv)
 
   std::string infile = "../examples/ExampleDataFiles/MarsTopo719.shape";
 
-  int lmax = 2;
+  int lmax = 15;
   int n = lmax + 1;
   std::vector<double> mars = shtools::sh_read(infile, lmax);
 
@@ -37,7 +37,7 @@ main(int argc, char** argv)
     std::cout << std::string(13 * n, '-') << std::endl;
   }
 
-  double val = shtools::make_grid_point(mars, 10.0, 30.0);
+  double val = shtools::make_grid_point(mars.begin(), mars.end(), 10.0, 30.0);
   std::cout << std::setprecision(16) << val << std::endl;
   std::cout << "diff to python " << val - 3395259.548270001 << std::endl;
   

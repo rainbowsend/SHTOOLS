@@ -55,9 +55,10 @@ inline std::ostream& operator<<(std::ostream& os, const ShCoeff& shc)
 }
 
 
-
-inline double
-make_grid_point(const std::vector<double>& cilm,
+template<class InputIt>
+double
+make_grid_point(const InputIt cilm_first,
+                const InputIt cilm_last,
                 double lat,
                 double lon,
                 int norm = 1,
@@ -65,12 +66,12 @@ make_grid_point(const std::vector<double>& cilm,
                 int dealloc = 0)
 {
 
-  int n = cilm.size();
+  int n = std::distance(cilm_first, cilm_last);
   int cilmd = std::sqrt(n / 2);
   int lmax = cilmd - 1;
 
   return cMakeGridPoint(
-    &cilm[0], &cilmd, &lmax, &lat, &lon, &norm, &csphase, &dealloc);
+    &*cilm_first, &cilmd, &lmax, &lat, &lon, &norm, &csphase, &dealloc);
 }
 
 template<class InputIt, class OutputIt>

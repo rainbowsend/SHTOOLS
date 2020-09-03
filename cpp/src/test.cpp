@@ -12,7 +12,7 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
 
-#include "shtools.h"
+#include "shtools_cpp.h"
 
 int
 main(int argc, char** argv)

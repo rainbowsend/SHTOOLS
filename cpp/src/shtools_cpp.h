@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cWrapper.h"
+#include "shtools.h"
 
 namespace shtools {
     

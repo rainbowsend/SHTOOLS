@@ -1,11 +1,10 @@
 #pragma once
 
-#include "sh_tools_wrapper.h"
+#include "cWrapper.h"
 
 namespace shtools {
     
     
-constexpr int n2 = 2;
 
 // n is number of cosine coefficents or sine coefficents
 inline int
@@ -71,7 +70,7 @@ make_grid_point(const InputIt cilm_first,
   int lmax = cilmd - 1;
 
   return cMakeGridPoint(
-    &*cilm_first, &cilmd, &lmax, &lat, &lon, &norm, &csphase, &dealloc);
+    &*cilm_first, cilmd, lmax, lat, lon, &norm, &csphase, &dealloc);
 }
 
 template<class InputIt, class OutputIt>
@@ -86,7 +85,7 @@ constexpr OutputIt sh_cindex_to_cilm( const InputIt cindex_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCindexToCilm(&*cindex_first, &n2, &n, &*cilm_first, &cilm_dim, &degmax, &exitstatus);
+  cSHCindexToCilm(&*cindex_first, 2, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -103,7 +102,7 @@ constexpr OutputIt sh_cilm_to_cindex( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCilmToCindex( &*cilm_first, &cilm_dim, &*cindex_first, &n2, &n, &degmax, &exitstatus);
+  cSHCilmToCindex( &*cilm_first, cilm_dim, &*cindex_first, 2, n, degmax, &exitstatus);
   
   return cindex_first;
 }
@@ -120,7 +119,7 @@ constexpr OutputIt sh_vector_to_cilm( const InputIt vector_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHVectorToCilm( &*vector_first, &n, &*cilm_first, &cilm_dim, &degmax, &exitstatus);
+  cSHVectorToCilm( &*vector_first, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -138,7 +137,7 @@ constexpr OutputIt sh_cilm_to_vector( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCilmToVector( &*cilm_first, &cilm_dim, &*vector_first, &n, &degmax, &exitstatus);
+  cSHCilmToVector( &*cilm_first, cilm_dim, &*vector_first, n, degmax, &exitstatus);
   
   
   return vector_first;
@@ -188,17 +187,17 @@ sh_read(const std::string& filename,
   int s = filename.size();
 
   cSHRead(filename.c_str(),
-          &s,
+          s,
           &cilm[0],
-          &cilm_dim,
+          cilm_dim,
           &degree,
           &skip,
           header,
-          &header_d,
+          header_d,
           error_ptr,
-          &n2,
-          &error_dim,
-          &error_dim,
+          2,
+          error_dim,
+          error_dim,
           &exitstatus);
 
   return cilm;

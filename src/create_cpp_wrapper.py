@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Aug 31 09:17:37 2020
-
-@author: corbin
+automatically creats 'cWrapper.h' which can be included by c or cpp programs
 """
 from numpy.f2py import crackfortran
 import re
@@ -14,10 +13,13 @@ TYPEMAP = {'integer':'int',
            'character': 'char',
            'complex':'double _Complex'}
 
+BYVALUE = {True:' ',
+           False:'* '}
+
 # ==== MAIN FUNCTION ====
 def main():
-    fname_wrapper = '../src/cWrapper.f95'
-    fname_signature = 'src/sh_tools_wrapper.h'
+    fname_wrapper = 'cWrapper.f95'
+    fname_signature = 'cWrapper.h'
 
     print('now cracking Fortran file ' + fname_wrapper + ' using f2py function...')
     crackfortran.verbose = False
@@ -48,7 +50,9 @@ def create_signature(subroutine):
     args = []
     for arg in subroutine['args']:
         var = subroutine['vars'][arg]
-        carg = TYPEMAP[var['typespec']] + '* ' + arg
+                
+        is_called_by_value = 'attrspec' in var and 'value' in var['attrspec']
+        carg = TYPEMAP[var['typespec']] + BYVALUE[is_called_by_value] + arg
         if 'intent' in var and 'in' in var['intent']:
             carg = 'const ' + carg
         args.append(carg)

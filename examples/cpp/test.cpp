@@ -40,7 +40,7 @@ main(int argc, char** argv)
   // In the C interface we always use 1-D arrays
   std::vector<double> cilm(2 * cilm_dim * cilm_dim);
 
-  shtools::cSHRead(infile.c_str(),
+  shtools::SHRead(infile.c_str(),
                    infile.size(),
                    &cilm[0],
                    cilm_dim,
@@ -53,13 +53,22 @@ main(int argc, char** argv)
                    0,
                    0,
                    nullptr);
-
+  
+  std::vector<double> index(cilm_dim*cilm_dim);
+  
+  int exitstatus;
+  shtools::SHCilmToVector(&cilm[0],&index[0],lmax, &exitstatus);
+  std::cerr << "exit status " << exitstatus << std::endl;
+  for(double d : index )
+      std::cerr << d << " ";
+  std::cerr << std::endl;
+  
   double lat = 10.0;
   double lon = 30.0;
 
   // Here the optional arguments norm, csphase, dealloc are null pointers.
   // Thus, they are not used. 
-  double val = shtools::cMakeGridPoint(
+  double val = shtools::MakeGridPoint(
     &cilm[0], cilm_dim, lmax, lat, lon, nullptr, nullptr, nullptr);
 
   std::cout << "diff to python " << val - 3395259.548270001 << std::endl;

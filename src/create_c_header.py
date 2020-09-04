@@ -38,7 +38,7 @@ def main():
                 
                 return_type = TYPEMAP[subroutine['vars'][subroutine['name']]['typespec']]
                 
-            newline = return_type + ' ' + subroutine['name'] \
+            newline = return_type + ' ' + subroutine['name'][1:] \
                 + '( ' + create_signature(subroutine) + ')' + ';'
             outfile.write(newline+'\n')
         outfile.write('}\n}\n')

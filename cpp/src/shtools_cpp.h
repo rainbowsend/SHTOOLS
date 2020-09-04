@@ -69,7 +69,7 @@ make_grid_point(const InputIt cilm_first,
   int cilmd = std::sqrt(n / 2);
   int lmax = cilmd - 1;
 
-  return cMakeGridPoint(
+  return MakeGridPoint(
     &*cilm_first, cilmd, lmax, lat, lon, &norm, &csphase, &dealloc);
 }
 
@@ -85,7 +85,7 @@ constexpr OutputIt sh_cindex_to_cilm( const InputIt cindex_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCindexToCilm(&*cindex_first, 2, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
+  SHCindexToCilm(&*cindex_first, 2, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -102,7 +102,7 @@ constexpr OutputIt sh_cilm_to_cindex( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCilmToCindex( &*cilm_first, cilm_dim, &*cindex_first, 2, n, degmax, &exitstatus);
+  SHCilmToCindex( &*cilm_first, cilm_dim, &*cindex_first, 2, n, degmax, &exitstatus);
   
   return cindex_first;
 }
@@ -119,7 +119,7 @@ constexpr OutputIt sh_vector_to_cilm( const InputIt vector_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHVectorToCilm( &*vector_first, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
+  SHVectorToCilm( &*vector_first, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -137,7 +137,7 @@ constexpr OutputIt sh_cilm_to_vector( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  cSHCilmToVector( &*cilm_first, cilm_dim, &*vector_first, n, degmax, &exitstatus);
+  SHCilmToVector( &*cilm_first, &*vector_first, degmax, &exitstatus);
   
   
   return vector_first;
@@ -186,7 +186,7 @@ sh_read(const std::string& filename,
 
   int s = filename.size();
 
-  cSHRead(filename.c_str(),
+  SHRead(filename.c_str(),
           s,
           &cilm[0],
           cilm_dim,

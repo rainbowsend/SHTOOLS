@@ -9,11 +9,16 @@ shapes using a similar procedure.
 from numpy.f2py import crackfortran
 from copy import deepcopy
 import re
+import yaml
 
 # ==== MAIN FUNCTION ====
 def main():
     fname_fortran = 'SHTOOLS.f95'
     fname_wrapper = 'cWrapper.f95'
+    
+    explicite_dims_file = "explicite_dimensions.yml"
+    with open(explicite_dims_file,'r') as exp_dim_fid:
+        explicite_dims=yaml.safe_load(exp_dim_fid.read())
 
     print('now cracking Fortran file SHTOOLS.f95 using f2py function...')
     crackfortran.verbose = False
@@ -25,8 +30,11 @@ def main():
     interface_old = module['body'][0]
     interface_new = deepcopy(interface_old)
     for subroutine in interface_new['body']:
-        modify_subroutine(subroutine)
-
+        if subroutine['name'] in explicite_dims:
+            modify_subroutine(subroutine, explicite_dims[subroutine['name']])
+        else:
+            modify_subroutine(subroutine)
+            
     print('create interface string...')
     wrapper = crackfortran.crack2fortran(interface_new)
     wrapperlines = wrapper.split('\n')
@@ -99,7 +107,7 @@ def main():
                                                 interface_old['body'],
                                                 isubroutine))[::-1]:
        wrapperlines[iline] = wrapperlines[iline] + ' bind(c, name=\"' \
-         + sroutine_new['name'] + '\")'
+         + sroutine_old['name'] + '\")'
        newline = 2 * crackfortran.tabchar + 'use, intrinsic :: iso_c_binding'
        wrapperlines.insert(iline+1, newline)
               
@@ -155,7 +163,7 @@ def create_arg_list(subroutine):
                  
 
 
-def modify_subroutine(subroutine):
+def modify_subroutine(subroutine, explicite_dim=None):
     """loops through variables of a subroutine and modifies them"""
     # print('\n----',subroutine['name'],'----')
 
@@ -179,6 +187,18 @@ def modify_subroutine(subroutine):
             varname = prepend + varname
             # print('prefix added:',varname)
         # -- change assumed to explicit:
+        
+        if explicite_dim and \
+           varname in explicite_dim['args']:
+               args = explicite_dim['args'][varname]
+               assert len( args ) == len( varattribs['dimension']), \
+               'number of dimensions don\'t match'
+               varattribs['dimension'] = args
+               if 'existing_dim' in explicite_dim:
+                   for dim in explicite_dim['existing_dim']:
+                       idx = subroutine['sortvars'].index(dim)
+                       subroutine['sortvars'].insert(0, subroutine['sortvars'].pop(idx)) 
+                           
         if has_assumed_shape(varattribs):
             make_explicit(subroutine, varname, varattribs)
 

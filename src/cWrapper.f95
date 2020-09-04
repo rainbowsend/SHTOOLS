@@ -1,4 +1,4 @@
-    subroutine cPlmBar(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="cPlmBar")
+    subroutine cPlmBar(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmBar")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmBar
         implicit none
@@ -13,7 +13,7 @@
     end subroutine cPlmBar
 
     subroutine cPlmBar_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                           , name="cPlmBar_d1")
+                           , name="PlmBar_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmBar_d1
         implicit none
@@ -29,7 +29,7 @@
         call PlmBar_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmBar_d1
 
-    subroutine cPlBar(p,p_d0,lmax,z,exitstatus)  bind(c, name="cPlBar")
+    subroutine cPlBar(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlBar")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlBar
         implicit none
@@ -41,7 +41,7 @@
         call PlBar(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlBar
 
-    subroutine cPlBar_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="cPlBar_d1")
+    subroutine cPlBar_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlBar_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlBar_d1
         implicit none
@@ -55,7 +55,7 @@
         call PlBar_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlBar_d1
 
-    subroutine cPlmON(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="cPlmON")
+    subroutine cPlmON(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmON")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmON
         implicit none
@@ -70,7 +70,7 @@
     end subroutine cPlmON
 
     subroutine cPlmON_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                          , name="cPlmON_d1")
+                          , name="PlmON_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmON_d1
         implicit none
@@ -86,7 +86,7 @@
         call PlmON_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmON_d1
 
-    subroutine cPlON(p,p_d0,lmax,z,exitstatus)  bind(c, name="cPlON")
+    subroutine cPlON(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlON")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlON
         implicit none
@@ -98,7 +98,7 @@
         call PlON(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlON
 
-    subroutine cPlON_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="cPlON_d1")
+    subroutine cPlON_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlON_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlON_d1
         implicit none
@@ -112,7 +112,7 @@
         call PlON_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlON_d1
 
-    subroutine cPlmSchmidt(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="cPlmSchmidt")
+    subroutine cPlmSchmidt(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmSchmidt")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmSchmidt
         implicit none
@@ -127,7 +127,7 @@
     end subroutine cPlmSchmidt
 
     subroutine cPlmSchmidt_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                               , name="cPlmSchmidt_d1")
+                               , name="PlmSchmidt_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmSchmidt_d1
         implicit none
@@ -143,7 +143,7 @@
         call PlmSchmidt_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmSchmidt_d1
 
-    subroutine cPlSchmidt(p,p_d0,lmax,z,exitstatus)  bind(c, name="cPlSchmidt")
+    subroutine cPlSchmidt(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlSchmidt")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlSchmidt
         implicit none
@@ -155,7 +155,7 @@
         call PlSchmidt(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlSchmidt
 
-    subroutine cPlSchmidt_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="cPlSchmidt_d1")
+    subroutine cPlSchmidt_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlSchmidt_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlSchmidt_d1
         implicit none
@@ -169,7 +169,7 @@
         call PlSchmidt_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlSchmidt_d1
 
-    subroutine cPLegendreA(p,p_d0,lmax,z,csphase,exitstatus)  bind(c, name="cPLegendreA")
+    subroutine cPLegendreA(p,p_d0,lmax,z,csphase,exitstatus)  bind(c, name="PLegendreA")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendreA
         implicit none
@@ -183,7 +183,7 @@
     end subroutine cPLegendreA
 
     subroutine cPLegendreA_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,exitstatus)  bind(c&
-                               , name="cPLegendreA_d1")
+                               , name="PLegendreA_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendreA_d1
         implicit none
@@ -198,7 +198,7 @@
         call PLegendreA_d1(p,dp1,lmax,z,csphase=csphase,exitstatus=exitstatus)
     end subroutine cPLegendreA_d1
 
-    subroutine cPLegendre(p,p_d0,lmax,z,exitstatus)  bind(c, name="cPLegendre")
+    subroutine cPLegendre(p,p_d0,lmax,z,exitstatus)  bind(c, name="PLegendre")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendre
         implicit none
@@ -210,7 +210,7 @@
         call PLegendre(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPLegendre
 
-    subroutine cPLegendre_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="cPLegendre_d1")
+    subroutine cPLegendre_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PLegendre_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendre_d1
         implicit none
@@ -224,7 +224,7 @@
         call PLegendre_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPLegendre_d1
 
-    function cPlmIndex(l,m)  bind(c, name="cPlmIndex")
+    function cPlmIndex(l,m)  bind(c, name="PlmIndex")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmIndex
         implicit none
@@ -235,7 +235,7 @@
     end function cPlmIndex
 
     subroutine cSHExpandDH(grid,grid_d0,grid_d1,n,cilm,cilm_d,lmax,norm,sampling,csphase&
-                               ,lmax_calc,exitstatus)  bind(c, name="cSHExpandDH")
+                               ,lmax_calc,exitstatus)  bind(c, name="SHExpandDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandDH
         implicit none
@@ -256,7 +256,7 @@
     end subroutine cSHExpandDH
 
     subroutine cMakeGridDH(griddh,griddh_d0,griddh_d1,n,cilm,cilm_d,lmax,norm,sampling&
-                                 ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="cMakeGridDH")
+                                 ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="MakeGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridDH
         implicit none
@@ -278,7 +278,7 @@
     end subroutine cMakeGridDH
 
     subroutine cSHExpandDHC(grid,grid_d0,grid_d1,n,cilm,cilm_d,lmax,norm,sampling&
-                                ,csphase,lmax_calc,exitstatus)  bind(c, name="cSHExpandDHC")
+                                ,csphase,lmax_calc,exitstatus)  bind(c, name="SHExpandDHC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandDHC
         implicit none
@@ -299,7 +299,7 @@
     end subroutine cSHExpandDHC
 
     subroutine cMakeGridDHC(griddh,griddh_d0,griddh_d1,n,cilm,cilm_d,lmax,norm,sampling&
-                                  ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="cMakeGridDHC")
+                                  ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="MakeGridDHC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridDHC
         implicit none
@@ -321,7 +321,7 @@
     end subroutine cMakeGridDHC
 
     subroutine cSHGLQ(lmax,zero,zero_d0,w,w_d0,plx,plx_d0,plx_d1,norm,csphase,cnorm&
-                          ,exitstatus)  bind(c, name="cSHGLQ")
+                          ,exitstatus)  bind(c, name="SHGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHGLQ
         implicit none
@@ -342,7 +342,7 @@
 
     subroutine cSHExpandGLQ(cilm,cilm_d,lmax,gridglq,gridglq_d0,gridglq_d1,w,w_d0&
                                 ,plx,plx_d0,plx_d1,zero,zero_d0,norm,csphase,lmax_calc&
-                                ,exitstatus)  bind(c, name="cSHExpandGLQ")
+                                ,exitstatus)  bind(c, name="SHExpandGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandGLQ
         implicit none
@@ -369,7 +369,7 @@
 
     subroutine cMakeGridGLQ(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_d,lmax,plx,plx_d0&
                                    ,plx_d1,zero,zero_d0,norm,csphase,lmax_calc,extend&
-                                   ,exitstatus)  bind(c, name="cMakeGridGLQ")
+                                   ,exitstatus)  bind(c, name="MakeGridGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridGLQ
         implicit none
@@ -395,7 +395,7 @@
 
     subroutine cSHExpandGLQC(cilm,cilm_d,lmax,gridglq,gridglq_d0,gridglq_d1,w,w_d0&
                                  ,plx,plx_d0,plx_d1,zero,zero_d0,norm,csphase,lmax_calc&
-                                 ,exitstatus)  bind(c, name="cSHExpandGLQC")
+                                 ,exitstatus)  bind(c, name="SHExpandGLQC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandGLQC
         implicit none
@@ -422,7 +422,7 @@
 
     subroutine cMakeGridGLQC(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_d,lmax,plx,plx_d0&
                                     ,plx_d1,zero,zero_d0,norm,csphase,lmax_calc,extend&
-                                    ,exitstatus)  bind(c, name="cMakeGridGLQC")
+                                    ,exitstatus)  bind(c, name="MakeGridGLQC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridGLQC
         implicit none
@@ -447,7 +447,7 @@
     end subroutine cMakeGridGLQC
 
     subroutine cGLQGridCoord(latglq,latglq_d0,longlq,longlq_d0,lmax,nlat,nlong,extend&
-                                   ,exitstatus)  bind(c, name="cGLQGridCoord")
+                                   ,exitstatus)  bind(c, name="GLQGridCoord")
         use, intrinsic :: iso_c_binding
         use shtools, only: GLQGridCoord
         implicit none
@@ -465,7 +465,7 @@
 
     subroutine cSHExpandLSQ(cilm,cilm_d,d,d_d0,lat,lat_d0,lon,lon_d0,nmax,lmax,norm&
                                 ,chi2,csphase,weights,weights_d0,exitstatus)  bind(c&
-                                , name="cSHExpandLSQ")
+                                , name="SHExpandLSQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandLSQ
         implicit none
@@ -491,7 +491,7 @@
 
     subroutine cMakeGrid2d(grid,grid_d0,grid_d1,cilm,cilm_d,lmax,interval,nlat,nlong&
                                ,norm,csphase,f,a,north,south,east,west,dealloc,exitstatus)  bind(c&
-                               , name="cMakeGrid2d")
+                               , name="MakeGrid2d")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGrid2d
         implicit none
@@ -520,7 +520,7 @@
     end subroutine cMakeGrid2d
 
     function cMakeGridPoint(cilm,cilm_d,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
-                                , name="cMakeGridPoint")
+                                , name="MakeGridPoint")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridPoint
         implicit none
@@ -537,7 +537,7 @@
     end function cMakeGridPoint
 
     function cMakeGridPointC(cilm,cilm_d,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
-                                 , name="cMakeGridPointC")
+                                 , name="MakeGridPointC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridPointC
         implicit none
@@ -556,7 +556,7 @@
 
     subroutine cSHMultiply(shout,shout_d0,shout_d1,shout_d2,sh1,sh1_d0,sh1_d1,sh1_d2&
                                 ,lmax1,sh2,sh2_d0,sh2_d1,sh2_d2,lmax2,precomp,norm&
-                                ,csphase,exitstatus)  bind(c, name="cSHMultiply")
+                                ,csphase,exitstatus)  bind(c, name="SHMultiply")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiply
         implicit none
@@ -584,7 +584,7 @@
 
     subroutine cSHRead(filename,filename_d1,cilm,cilm_d,lmax,skip,header,header_d0&
                                ,error,error_d0,error_d1,error_d2,exitstatus)  bind(c&
-                               , name="cSHRead")
+                               , name="SHRead")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRead
         implicit none
@@ -610,7 +610,7 @@
 
     subroutine cSHRead2(filename,filename_d1,cilm,cilm_d,lmax,gm,r0_pot,error,error_d0&
                                 ,error_d1,error_d2,dot,dot_d0,dot_d1,dot_d2,doystart&
-                                ,doyend,epoch,exitstatus)  bind(c, name="cSHRead2")
+                                ,doyend,epoch,exitstatus)  bind(c, name="SHRead2")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRead2
         implicit none
@@ -642,7 +642,7 @@
     end subroutine cSHRead2
 
     subroutine cSHReadJPL(filename,filename_d1,cilm,cilm_d,lmax,error,error_d0,error_d1&
-                                  ,error_d2,gm,formatstring,exitstatus)  bind(c, name="cSHReadJPL")
+                                  ,error_d2,gm,formatstring,exitstatus)  bind(c, name="SHReadJPL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHReadJPL
         implicit none
@@ -669,22 +669,19 @@
                                ,exitstatus=exitstatus)
     end subroutine cSHReadJPL
 
-    subroutine cSHCilmToVector(cilm,cilm_d,vector,vector_d0,lmax,exitstatus)  bind(c&
-                                   , name="cSHCilmToVector")
+    subroutine cSHCilmToVector(cilm,vector,lmax,exitstatus)  bind(c, name="SHCilmToVector")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCilmToVector
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
-        integer(kind=c_int), value,intent(in) :: vector_d0
-        real(kind=c_double), dimension(vector_d0),intent(out) :: vector
         integer(kind=c_int), value,intent(in) :: lmax
+        real(kind=c_double), dimension(2,lmax+1,lmax+1),intent(in) :: cilm
+        real(kind=c_double), dimension((lmax+1)**2),intent(out) :: vector
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHCilmToVector(cilm,vector,lmax,exitstatus=exitstatus)
     end subroutine cSHCilmToVector
 
     subroutine cSHVectorToCilm(vector,vector_d0,cilm,cilm_d,lmax,exitstatus)  bind(c&
-                                     , name="cSHVectorToCilm")
+                                     , name="SHVectorToCilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHVectorToCilm
         implicit none
@@ -698,7 +695,7 @@
     end subroutine cSHVectorToCilm
 
     subroutine cSHCilmToCindex(cilm,cilm_d,cindex,cindex_d0,cindex_d1,degmax,exitstatus)  bind(c&
-                                   , name="cSHCilmToCindex")
+                                   , name="SHCilmToCindex")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCilmToCindex
         implicit none
@@ -713,7 +710,7 @@
     end subroutine cSHCilmToCindex
 
     subroutine cSHCindexToCilm(cindex,cindex_d0,cindex_d1,cilm,cilm_d,degmax,exitstatus)  bind(c&
-                                     , name="cSHCindexToCilm")
+                                     , name="SHCindexToCilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCindexToCilm
         implicit none
@@ -728,7 +725,7 @@
     end subroutine cSHCindexToCilm
 
     subroutine cSHrtoc(rcilm,rcilm_d0,rcilm_d1,rcilm_d2,ccilm,ccilm_d0,ccilm_d1,ccilm_d2&
-                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="cSHrtoc")
+                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="SHrtoc")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHrtoc
         implicit none
@@ -749,7 +746,7 @@
     end subroutine cSHrtoc
 
     subroutine cSHctor(ccilm,ccilm_d0,ccilm_d1,ccilm_d2,rcilm,rcilm_d0,rcilm_d1,rcilm_d2&
-                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="cSHctor")
+                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="SHctor")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHctor
         implicit none
@@ -769,7 +766,7 @@
                          ,exitstatus=exitstatus)
     end subroutine cSHctor
 
-    subroutine cdjpi2(dj,dj_d0,dj_d1,dj_d2,lmax,exitstatus)  bind(c, name="cdjpi2")
+    subroutine cdjpi2(dj,dj_d0,dj_d1,dj_d2,lmax,exitstatus)  bind(c, name="djpi2")
         use, intrinsic :: iso_c_binding
         use shtools, only: djpi2
         implicit none
@@ -783,7 +780,7 @@
     end subroutine cdjpi2
 
     subroutine cSHRotateCoef(x,cof,cof_d0,cof_d1,rcof,rcof_d0,rcof_d1,dj,dj_d0,dj_d1&
-                              ,dj_d2,lmax,exitstatus)  bind(c, name="cSHRotateCoef")
+                              ,dj_d2,lmax,exitstatus)  bind(c, name="SHRotateCoef")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRotateCoef
         implicit none
@@ -805,7 +802,7 @@
 
     subroutine cSHRotateRealCoef(cilmrot,cilmrot_d0,cilmrot_d1,cilmrot_d2,cilm,cilm_d&
                                         ,lmax,x,x_d0,dj,dj_d0,dj_d1,dj_d2,exitstatus)  bind(c&
-                                        , name="cSHRotateRealCoef")
+                                        , name="SHRotateRealCoef")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRotateRealCoef
         implicit none
@@ -826,7 +823,7 @@
         call SHRotateRealCoef(cilmrot,cilm,lmax,x,dj,exitstatus=exitstatus)
     end subroutine cSHRotateRealCoef
 
-    function cSHPowerL(c,c_d0,c_d1,c_d2,l)  bind(c, name="cSHPowerL")
+    function cSHPowerL(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerL
         implicit none
@@ -839,7 +836,7 @@
         cSHPowerL=SHPowerL(c,l)
     end function cSHPowerL
 
-    function cSHPowerDensityL(c,c_d0,c_d1,c_d2,l)  bind(c, name="cSHPowerDensityL")
+    function cSHPowerDensityL(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerDensityL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerDensityL
         implicit none
@@ -852,7 +849,7 @@
         cSHPowerDensityL=SHPowerDensityL(c,l)
     end function cSHPowerDensityL
 
-    function cSHCrossPowerL(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c, name="cSHCrossPowerL")
+    function cSHCrossPowerL(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c, name="SHCrossPowerL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerL
         implicit none
@@ -870,7 +867,7 @@
     end function cSHCrossPowerL
 
     function cSHCrossPowerDensityL(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                                     , name="cSHCrossPowerDensityL")
+                                     , name="SHCrossPowerDensityL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerDensityL
         implicit none
@@ -888,7 +885,7 @@
     end function cSHCrossPowerDensityL
 
     subroutine cSHPowerSpectrum(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                 , name="cSHPowerSpectrum")
+                                 , name="SHPowerSpectrum")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrum
         implicit none
@@ -904,7 +901,7 @@
     end subroutine cSHPowerSpectrum
 
     subroutine cSHPowerSpectrumDensity(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                        , name="cSHPowerSpectrumDensity")
+                                        , name="SHPowerSpectrumDensity")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumDensity
         implicit none
@@ -920,7 +917,7 @@
     end subroutine cSHPowerSpectrumDensity
 
     subroutine cSHCrossPowerSpectrum(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,lmax&
-                                       ,cspectra,cspectra_d0,exitstatus)  bind(c, name="cSHCrossPowerSpectrum")
+                                       ,cspectra,cspectra_d0,exitstatus)  bind(c, name="SHCrossPowerSpectrum")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrum
         implicit none
@@ -941,7 +938,7 @@
 
     subroutine cSHCrossPowerSpectrumDensity(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2&
                                               ,lmax,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                              , name="cSHCrossPowerSpectrumDensity")
+                                              , name="SHCrossPowerSpectrumDensity")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumDensity
         implicit none
@@ -962,7 +959,7 @@
 
     subroutine cSHAdmitCorr(G,G_d0,G_d1,G_d2,T,T_d0,T_d1,T_d2,lmax,admit,admit_d0&
                              ,corr,corr_d0,admit_error,admit_error_d0,exitstatus)  bind(c&
-                             , name="cSHAdmitCorr")
+                             , name="SHAdmitCorr")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHAdmitCorr
         implicit none
@@ -985,7 +982,7 @@
         call SHAdmitCorr(G,T,lmax,admit,corr,admit_error=admit_error,exitstatus=exitstatus)
     end subroutine cSHAdmitCorr
 
-    function cSHConfidence(l_conf,r)  bind(c, name="cSHConfidence")
+    function cSHConfidence(l_conf,r)  bind(c, name="SHConfidence")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHConfidence
         implicit none
@@ -995,7 +992,7 @@
         cSHConfidence=SHConfidence(l_conf,r)
     end function cSHConfidence
 
-    function cSHPowerLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="cSHPowerLC")
+    function cSHPowerLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerLC
         implicit none
@@ -1008,7 +1005,7 @@
         cSHPowerLC=SHPowerLC(c,l)
     end function cSHPowerLC
 
-    function cSHPowerDensityLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="cSHPowerDensityLC")
+    function cSHPowerDensityLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerDensityLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerDensityLC
         implicit none
@@ -1022,7 +1019,7 @@
     end function cSHPowerDensityLC
 
     function cSHCrossPowerLC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                               , name="cSHCrossPowerLC")
+                               , name="SHCrossPowerLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerLC
         implicit none
@@ -1040,7 +1037,7 @@
     end function cSHCrossPowerLC
 
     function cSHCrossPowerDensityLC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                                      , name="cSHCrossPowerDensityLC")
+                                      , name="SHCrossPowerDensityLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerDensityLC
         implicit none
@@ -1058,7 +1055,7 @@
     end function cSHCrossPowerDensityLC
 
     subroutine cSHPowerSpectrumC(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                  , name="cSHPowerSpectrumC")
+                                  , name="SHPowerSpectrumC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumC
         implicit none
@@ -1074,7 +1071,7 @@
     end subroutine cSHPowerSpectrumC
 
     subroutine cSHPowerSpectrumDensityC(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                         , name="cSHPowerSpectrumDensityC")
+                                         , name="SHPowerSpectrumDensityC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumDensityC
         implicit none
@@ -1091,7 +1088,7 @@
 
     subroutine cSHCrossPowerSpectrumC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,lmax&
                                         ,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                        , name="cSHCrossPowerSpectrumC")
+                                        , name="SHCrossPowerSpectrumC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumC
         implicit none
@@ -1112,7 +1109,7 @@
 
     subroutine cSHCrossPowerSpectrumDensityC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2&
                                                ,lmax,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                               , name="cSHCrossPowerSpectrumDensityC")
+                                               , name="SHCrossPowerSpectrumDensityC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumDensityC
         implicit none
@@ -1134,7 +1131,7 @@
     subroutine cSHMultiTaperSE(mtse,mtse_d0,sd,sd_d0,sh,sh_d0,sh_d1,sh_d2,lmax,tapers&
                                    ,tapers_d0,tapers_d1,taper_order,taper_order_d0&
                                    ,lmaxt,k,alpha,alpha_d0,lat,lon,taper_wt,taper_wt_d0&
-                                   ,norm,csphase,exitstatus)  bind(c, name="cSHMultiTaperSE")
+                                   ,norm,csphase,exitstatus)  bind(c, name="SHMultiTaperSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperSE
         implicit none
@@ -1172,7 +1169,7 @@
                                     ,sh2,sh2_d0,sh2_d1,sh2_d2,lmax2,tapers,tapers_d0&
                                     ,tapers_d1,taper_order,taper_order_d0,lmaxt,k&
                                     ,alpha,alpha_d0,lat,lon,taper_wt,taper_wt_d0,norm&
-                                    ,csphase,exitstatus)  bind(c, name="cSHMultiTaperCSE")
+                                    ,csphase,exitstatus)  bind(c, name="SHMultiTaperCSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperCSE
         implicit none
@@ -1216,7 +1213,7 @@
                                            ,t_d2,lmax,admit,admit_d0,corr,corr_d0&
                                            ,k,admit_error,admit_error_d0,corr_error&
                                            ,corr_error_d0,taper_wt,taper_wt_d0,mtdef&
-                                           ,k1linsig,exitstatus)  bind(c, name="cSHLocalizedAdmitCorr")
+                                           ,k1linsig,exitstatus)  bind(c, name="SHLocalizedAdmitCorr")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHLocalizedAdmitCorr
         implicit none
@@ -1259,7 +1256,7 @@
 
     subroutine cSHReturnTapers(theta0,lmax,tapers,tapers_d0,tapers_d1,eigenvalues&
                                      ,eigenvalues_d0,taper_order,taper_order_d0,degrees&
-                                     ,degrees_d0,exitstatus)  bind(c, name="cSHReturnTapers")
+                                     ,degrees_d0,exitstatus)  bind(c, name="SHReturnTapers")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHReturnTapers
         implicit none
@@ -1281,7 +1278,7 @@
 
     subroutine cSHReturnTapersM(theta0,lmax,m,tapers,tapers_d0,tapers_d1,eigenvalues&
                                       ,eigenvalues_d0,shannon,degrees,degrees_d0,ntapers&
-                                      ,exitstatus)  bind(c, name="cSHReturnTapersM")
+                                      ,exitstatus)  bind(c, name="SHReturnTapersM")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHReturnTapersM
         implicit none
@@ -1303,7 +1300,7 @@
     end subroutine cSHReturnTapersM
 
     subroutine cComputeDm(dllm,dllm_d0,dllm_d1,lmax,m,theta0,degrees,degrees_d0,exitstatus)  bind(c&
-                              , name="cComputeDm")
+                              , name="ComputeDm")
         use, intrinsic :: iso_c_binding
         use shtools, only: ComputeDm
         implicit none
@@ -1320,7 +1317,7 @@
     end subroutine cComputeDm
 
     subroutine cComputeDG82(dG82,dG82_d0,dG82_d1,lmax,m,theta0,exitstatus)  bind(c&
-                                , name="cComputeDG82")
+                                , name="ComputeDG82")
         use, intrinsic :: iso_c_binding
         use shtools, only: ComputeDG82
         implicit none
@@ -1334,7 +1331,7 @@
         call ComputeDG82(dG82,lmax,m,theta0,exitstatus=exitstatus)
     end subroutine cComputeDG82
 
-    function cSHFindLWin(theta0,m,alpha,taper_number)  bind(c, name="cSHFindLWin")
+    function cSHFindLWin(theta0,m,alpha,taper_number)  bind(c, name="SHFindLWin")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHFindLWin
         implicit none
@@ -1348,7 +1345,7 @@
 
     subroutine cSHBiasK(tapers,tapers_d0,tapers_d1,lwin,k,incspectra,incspectra_d0&
                               ,ldata,outcspectra,outcspectra_d0,taper_wt,taper_wt_d0&
-                              ,save_cg,exitstatus)  bind(c, name="cSHBiasK")
+                              ,save_cg,exitstatus)  bind(c, name="SHBiasK")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHBiasK
         implicit none
@@ -1372,7 +1369,7 @@
 
     subroutine cSHMTCouplingMatrix(Mmt,Mmt_d0,Mmt_d1,lmax,tapers_power,tapers_power_d0&
                                       ,tapers_power_d1,lwin,k,taper_wt,taper_wt_d0&
-                                      ,exitstatus)  bind(c, name="cSHMTCouplingMatrix")
+                                      ,exitstatus)  bind(c, name="SHMTCouplingMatrix")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMTCouplingMatrix
         implicit none
@@ -1393,7 +1390,7 @@
 
     subroutine cSHBiasAdmitCorr(sgt,sgt_d0,sgg,sgg_d0,stt,stt_d0,lmax,tapers,tapers_d0&
                                    ,tapers_d1,lwin,k,admit,admit_d0,corr,corr_d0,mtdef&
-                                   ,taper_wt,taper_wt_d0,exitstatus)  bind(c, name="cSHBiasAdmitCorr")
+                                   ,taper_wt,taper_wt_d0,exitstatus)  bind(c, name="SHBiasAdmitCorr")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHBiasAdmitCorr
         implicit none
@@ -1424,7 +1421,7 @@
     subroutine cSHMTDebias(mtdebias,mtdebias_d0,mtdebias_d1,mtspectra,mtspectra_d0&
                                    ,mtspectra_d1,lmax,tapers,tapers_d0,tapers_d1,lwin&
                                    ,k,nl,lmid,lmid_d0,n,taper_wt,taper_wt_d0,exitstatus)  bind(c&
-                                   , name="cSHMTDebias")
+                                   , name="SHMTDebias")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMTDebias
         implicit none
@@ -1455,7 +1452,7 @@
                             ,lwin,kmax,Sff,Sff_d0,var_opt,var_opt_d0,var_unit,var_unit_d0&
                             ,weight_opt,weight_opt_d0,weight_opt_d1,unweighted_covar&
                             ,unweighted_covar_d0,unweighted_covar_d1,nocross,exitstatus)  bind(c&
-                            , name="cSHMTVarOpt")
+                            , name="SHMTVarOpt")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMTVarOpt
         implicit none
@@ -1489,7 +1486,7 @@
     subroutine cSHMTVar(l,tapers,tapers_d0,tapers_d1,taper_order,taper_order_d0,lwin&
                          ,kmax,Sff,Sff_d0,variance,taper_wt,taper_wt_d0,unweighted_covar&
                          ,unweighted_covar_d0,unweighted_covar_d1,nocross,exitstatus)  bind(c&
-                         , name="cSHMTVar")
+                         , name="SHMTVar")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMTVar
         implicit none
@@ -1517,7 +1514,7 @@
     end subroutine cSHMTVar
 
     function cSHSjkPG(incspectra,incspectra_d0,l,m,mprime,hj_real,hj_real_d0,hk_real&
-                                ,hk_real_d0,mj,mk,lwin,hkcc)  bind(c, name="cSHSjkPG")
+                                ,hk_real_d0,mj,mk,lwin,hkcc)  bind(c, name="SHSjkPG")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHSjkPG
         implicit none
@@ -1541,7 +1538,7 @@
     subroutine cSHReturnTapersMap(tapers,tapers_d0,tapers_d1,eigenvalues,eigenvalues_d0&
                                         ,dh_mask,dh_mask_d0,dh_mask_d1,n_dh,lmax,sampling&
                                         ,ntapers,degrees,degrees_d0,exitstatus)  bind(c&
-                                        , name="cSHReturnTapersMap")
+                                        , name="SHReturnTapersMap")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHReturnTapersMap
         implicit none
@@ -1566,7 +1563,7 @@
 
     subroutine cSHBiasKMask(tapers,tapers_d0,tapers_d1,lwin,k,incspectra,incspectra_d0&
                                   ,ldata,outcspectra,outcspectra_d0,taper_wt,taper_wt_d0&
-                                  ,save_cg,exitstatus)  bind(c, name="cSHBiasKMask")
+                                  ,save_cg,exitstatus)  bind(c, name="SHBiasKMask")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHBiasKMask
         implicit none
@@ -1591,7 +1588,7 @@
     subroutine cSHMultiTaperMaskSE(mtse,mtse_d0,sd,sd_d0,sh,sh_d0,sh_d1,sh_d2,lmax&
                                        ,tapers,tapers_d0,tapers_d1,lmaxt,k,taper_wt&
                                        ,taper_wt_d0,norm,csphase,exitstatus)  bind(c&
-                                       , name="cSHMultiTaperMaskSE")
+                                       , name="SHMultiTaperMaskSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperMaskSE
         implicit none
@@ -1621,7 +1618,7 @@
     subroutine cSHMultiTaperMaskCSE(mtse,mtse_d0,sd,sd_d0,sh1,sh1_d0,sh1_d1,sh1_d2&
                                         ,lmax1,sh2,sh2_d0,sh2_d1,sh2_d2,lmax2,tapers&
                                         ,tapers_d0,tapers_d1,lmaxt,k,taper_wt,taper_wt_d0&
-                                        ,norm,csphase,exitstatus)  bind(c, name="cSHMultiTaperMaskCSE")
+                                        ,norm,csphase,exitstatus)  bind(c, name="SHMultiTaperMaskCSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperMaskCSE
         implicit none
@@ -1654,7 +1651,7 @@
     end subroutine cSHMultiTaperMaskCSE
 
     subroutine cComputeDMap(Dij,Dij_d0,Dij_d1,dh_mask,dh_mask_d0,dh_mask_d1,n_dh,lmax&
-                               ,sampling,degrees,degrees_d0,exitstatus)  bind(c, name="cComputeDMap")
+                               ,sampling,degrees,degrees_d0,exitstatus)  bind(c, name="ComputeDMap")
         use, intrinsic :: iso_c_binding
         use shtools, only: ComputeDMap
         implicit none
@@ -1675,7 +1672,7 @@
 
     subroutine cCurve2Mask(dhgrid,dhgrid_d0,dhgrid_d1,n,sampling,profile,profile_d0&
                                  ,profile_d1,nprofile,NP,extend,exitstatus)  bind(c&
-                                 , name="cCurve2Mask")
+                                 , name="Curve2Mask")
         use, intrinsic :: iso_c_binding
         use shtools, only: Curve2Mask
         implicit none
@@ -1695,7 +1692,7 @@
     end subroutine cCurve2Mask
 
     subroutine cSHBias(Shh,Shh_d0,lwin,incspectra,incspectra_d0,ldata,outcspectra&
-                          ,outcspectra_d0,save_cg,exitstatus)  bind(c, name="cSHBias")
+                          ,outcspectra_d0,save_cg,exitstatus)  bind(c, name="SHBias")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHBias
         implicit none
@@ -1712,7 +1709,7 @@
         call SHBias(Shh,lwin,incspectra,ldata,outcspectra,save_cg=save_cg,exitstatus=exitstatus)
     end subroutine cSHBias
 
-    subroutine cSphericalCapCoef(coef,coef_d0,theta,lmax,exitstatus)  bind(c, name="cSphericalCapCoef")
+    subroutine cSphericalCapCoef(coef,coef_d0,theta,lmax,exitstatus)  bind(c, name="SphericalCapCoef")
         use, intrinsic :: iso_c_binding
         use shtools, only: SphericalCapCoef
         implicit none
@@ -1727,7 +1724,7 @@
     subroutine cMakeGravGridDH(cilm,cilm_d,lmax,gm,r0,a,f,rad,rad_d0,rad_d1,theta&
                                    ,theta_d0,theta_d1,phi,phi_d0,phi_d1,total,total_d0&
                                    ,total_d1,n,sampling,lmax_calc,omega,normal_gravity&
-                                   ,pot,pot_d0,pot_d1,extend,exitstatus)  bind(c, name="cMakeGravGridDH")
+                                   ,pot,pot_d0,pot_d1,extend,exitstatus)  bind(c, name="MakeGravGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGravGridDH
         implicit none
@@ -1769,7 +1766,7 @@
                                        ,vyy_d0,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0&
                                        ,vxy_d1,vxz,vxz_d0,vxz_d1,vyz,vyz_d0,vyz_d1&
                                        ,n,sampling,lmax_calc,extend,exitstatus)  bind(c&
-                                       , name="cMakeGravGradGridDH")
+                                       , name="MakeGravGradGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGravGradGridDH
         implicit none
@@ -1810,7 +1807,7 @@
     subroutine cMakeMagGradGridDH(cilm,cilm_d,lmax,r0,a,f,vxx,vxx_d0,vxx_d1,vyy,vyy_d0&
                                       ,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0,vxy_d1&
                                       ,vxz,vxz_d0,vxz_d1,vyz,vyz_d0,vyz_d1,n,sampling&
-                                      ,lmax_calc,extend,exitstatus)  bind(c, name="cMakeMagGradGridDH")
+                                      ,lmax_calc,extend,exitstatus)  bind(c, name="MakeMagGradGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeMagGradGridDH
         implicit none
@@ -1849,7 +1846,7 @@
 
     subroutine cMakeGeoidGrid(geoid,geoid_d0,geoid_d1,cilm,cilm_d,lmax,r0pot,GM,PotRef&
                                    ,omega,r,gridtype,order,nlat,nlong,interval,lmax_calc&
-                                   ,a,f,extend,exitstatus)  bind(c, name="cMakeGeoidGrid")
+                                   ,a,f,extend,exitstatus)  bind(c, name="MakeGeoidGrid")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGeoidGrid
         implicit none
@@ -1881,7 +1878,7 @@
 
     subroutine cCilmPlus(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass,d,rho&
                              ,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1,n,dref&
-                             ,exitstatus)  bind(c, name="cCilmPlus")
+                             ,exitstatus)  bind(c, name="CilmPlus")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmPlus
         implicit none
@@ -1912,7 +1909,7 @@
 
     subroutine cCilmMinus(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass,d&
                               ,rho,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1&
-                              ,n,dref,exitstatus)  bind(c, name="cCilmMinus")
+                              ,n,dref,exitstatus)  bind(c, name="CilmMinus")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmMinus
         implicit none
@@ -1943,7 +1940,7 @@
 
     subroutine cCilmPlusRhoH(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
                                  ,d,rho,rho_d0,rho_d1,gridtype,w,w_d0,zero,zero_d0&
-                                 ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="cCilmPlusRhoH")
+                                 ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="CilmPlusRhoH")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmPlusRhoH
         implicit none
@@ -1976,7 +1973,7 @@
 
     subroutine cCilmMinusRhoH(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
                                   ,d,rho,rho_d0,rho_d1,gridtype,w,w_d0,zero,zero_d0&
-                                  ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="cCilmMinusRhoH")
+                                  ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="CilmMinusRhoH")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmMinusRhoH
         implicit none
@@ -2010,7 +2007,7 @@
     subroutine cBAtoHilm(cilm,cilm_d,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0,gridglq_d1&
                              ,lmax,nmax,mass,r0,rho,gridtype,w,w_d0,plx,plx_d0,plx_d1&
                              ,zero,zero_d0,filter_type,filter_deg,lmax_calc,exitstatus)  bind(c&
-                             , name="cBAtoHilm")
+                             , name="BAtoHilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: BAtoHilm
         implicit none
@@ -2048,7 +2045,7 @@
     subroutine cBAtoHilmRhoH(cilm,cilm_d,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0,gridglq_d1&
                                  ,lmax,nmax,mass,r0,rho,rho_d0,rho_d1,gridtype,w,w_d0&
                                  ,plx,plx_d0,plx_d1,zero,zero_d0,filter_type,filter_deg&
-                                 ,lmax_calc,exitstatus)  bind(c, name="cBAtoHilmRhoH")
+                                 ,lmax_calc,exitstatus)  bind(c, name="BAtoHilmRhoH")
         use, intrinsic :: iso_c_binding
         use shtools, only: BAtoHilmRhoH
         implicit none
@@ -2085,7 +2082,7 @@
                               ,lmax_calc=lmax_calc,exitstatus=exitstatus)
     end subroutine cBAtoHilmRhoH
 
-    function cDownContFilterMA(l,half,r,d)  bind(c, name="cDownContFilterMA")
+    function cDownContFilterMA(l,half,r,d)  bind(c, name="DownContFilterMA")
         use, intrinsic :: iso_c_binding
         use shtools, only: DownContFilterMA
         implicit none
@@ -2097,7 +2094,7 @@
         cDownContFilterMA=DownContFilterMA(l,half,r,d)
     end function cDownContFilterMA
 
-    function cDownContFilterMC(l,half,r,d)  bind(c, name="cDownContFilterMC")
+    function cDownContFilterMC(l,half,r,d)  bind(c, name="DownContFilterMC")
         use, intrinsic :: iso_c_binding
         use shtools, only: DownContFilterMC
         implicit none
@@ -2109,7 +2106,7 @@
         cDownContFilterMC=DownContFilterMC(l,half,r,d)
     end function cDownContFilterMC
 
-    function cNormalGravity(geocentric_lat,gm,omega,a,b)  bind(c, name="cNormalGravity")
+    function cNormalGravity(geocentric_lat,gm,omega,a,b)  bind(c, name="NormalGravity")
         use, intrinsic :: iso_c_binding
         use shtools, only: NormalGravity
         implicit none
@@ -2126,7 +2123,7 @@
                                   ,theta_grid,theta_grid_d0,theta_grid_d1,phi_grid&
                                   ,phi_grid_d0,phi_grid_d1,total_grid,total_grid_d0&
                                   ,total_grid_d1,n,sampling,lmax_calc,pot_grid,pot_grid_d0&
-                                  ,pot_grid_d1,extend,exitstatus)  bind(c, name="cMakeMagGridDH")
+                                  ,pot_grid_d1,extend,exitstatus)  bind(c, name="MakeMagGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeMagGridDH
         implicit none
@@ -2162,7 +2159,7 @@
     end subroutine cMakeMagGridDH
 
     subroutine cSHMagPowerSpectrum(c,c_d0,c_d1,c_d2,a,r,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                    , name="cSHMagPowerSpectrum")
+                                    , name="SHMagPowerSpectrum")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMagPowerSpectrum
         implicit none
@@ -2179,7 +2176,7 @@
         call SHMagPowerSpectrum(c,a,r,lmax,spectra,exitstatus=exitstatus)
     end subroutine cSHMagPowerSpectrum
 
-    function cSHMagPowerL(c,c_d0,c_d1,c_d2,a,r,l)  bind(c, name="cSHMagPowerL")
+    function cSHMagPowerL(c,c_d0,c_d1,c_d2,a,r,l)  bind(c, name="SHMagPowerL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMagPowerL
         implicit none
@@ -2195,7 +2192,7 @@
     end function cSHMagPowerL
 
     subroutine cMakeCircleCoord(coord,coord_d0,coord_d1,lat,lon,theta0,cinterval,cnum&
-                                     ,exitstatus)  bind(c, name="cMakeCircleCoord")
+                                     ,exitstatus)  bind(c, name="MakeCircleCoord")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeCircleCoord
         implicit none
@@ -2212,7 +2209,7 @@
     end subroutine cMakeCircleCoord
 
     subroutine cMakeEllipseCoord(coord,coord_d0,coord_d1,lat,lon,dec,A_theta,B_theta&
-                                      ,cinterval,cnum,exitstatus)  bind(c, name="cMakeEllipseCoord")
+                                      ,cinterval,cnum,exitstatus)  bind(c, name="MakeEllipseCoord")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeEllipseCoord
         implicit none
@@ -2231,7 +2228,7 @@
                                    ,cnum=cnum,exitstatus=exitstatus)
     end subroutine cMakeEllipseCoord
 
-    subroutine cWigner3j(w3j,w3j_d0,jmin,jmax,j2,j3,m1,m2,m3,exitstatus)  bind(c, name="cWigner3j")
+    subroutine cWigner3j(w3j,w3j_d0,jmin,jmax,j2,j3,m1,m2,m3,exitstatus)  bind(c, name="Wigner3j")
         use, intrinsic :: iso_c_binding
         use shtools, only: Wigner3j
         implicit none
@@ -2248,7 +2245,7 @@
         call Wigner3j(w3j,jmin,jmax,j2,j3,m1,m2,m3,exitstatus=exitstatus)
     end subroutine cWigner3j
 
-    function cRandomN(idum)  bind(c, name="cRandomN")
+    function cRandomN(idum)  bind(c, name="RandomN")
         use, intrinsic :: iso_c_binding
         use shtools, only: RandomN
         implicit none
@@ -2257,7 +2254,7 @@
         cRandomN=RandomN(idum)
     end function cRandomN
 
-    function cRandomGaussian(idum)  bind(c, name="cRandomGaussian")
+    function cRandomGaussian(idum)  bind(c, name="RandomGaussian")
         use, intrinsic :: iso_c_binding
         use shtools, only: RandomGaussian
         implicit none
@@ -2266,7 +2263,7 @@
         cRandomGaussian=RandomGaussian(idum)
     end function cRandomGaussian
 
-    subroutine cPreGLQ(x1,x2,n,zero,zero_d0,w,w_d0,exitstatus)  bind(c, name="cPreGLQ")
+    subroutine cPreGLQ(x1,x2,n,zero,zero_d0,w,w_d0,exitstatus)  bind(c, name="PreGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: PreGLQ
         implicit none
@@ -2281,7 +2278,7 @@
         call PreGLQ(x1,x2,n,zero,w,exitstatus=exitstatus)
     end subroutine cPreGLQ
 
-    function cNGLQ(degree)  bind(c, name="cNGLQ")
+    function cNGLQ(degree)  bind(c, name="NGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: NGLQ
         implicit none
@@ -2290,7 +2287,7 @@
         cNGLQ=NGLQ(degree)
     end function cNGLQ
 
-    function cNGLQSH(degree)  bind(c, name="cNGLQSH")
+    function cNGLQSH(degree)  bind(c, name="NGLQSH")
         use, intrinsic :: iso_c_binding
         use shtools, only: NGLQSH
         implicit none
@@ -2299,7 +2296,7 @@
         cNGLQSH=NGLQSH(degree)
     end function cNGLQSH
 
-    function cNGLQSHN(degree,n)  bind(c, name="cNGLQSHN")
+    function cNGLQSHN(degree,n)  bind(c, name="NGLQSHN")
         use, intrinsic :: iso_c_binding
         use shtools, only: NGLQSHN
         implicit none
@@ -2309,7 +2306,7 @@
         cNGLQSHN=NGLQSHN(degree,n)
     end function cNGLQSHN
 
-    subroutine cDHaj(n,aj,aj_d0,extend,exitstatus)  bind(c, name="cDHaj")
+    subroutine cDHaj(n,aj,aj_d0,extend,exitstatus)  bind(c, name="DHaj")
         use, intrinsic :: iso_c_binding
         use shtools, only: DHaj
         implicit none
@@ -2321,7 +2318,7 @@
         call DHaj(n,aj,extend=extend,exitstatus=exitstatus)
     end subroutine cDHaj
 
-    function cYilmIndexVector(i,l,m)  bind(c, name="cYilmIndexVector")
+    function cYilmIndexVector(i,l,m)  bind(c, name="YilmIndexVector")
         use, intrinsic :: iso_c_binding
         use shtools, only: YilmIndexVector
         implicit none
@@ -2333,7 +2330,7 @@
     end function cYilmIndexVector
 
     subroutine cEigValVecSym(ain,ain_d0,ain_d1,n,eig,eig_d0,evec,evec_d0,evec_d1,ul&
-                                ,K,exitstatus)  bind(c, name="cEigValVecSym")
+                                ,K,exitstatus)  bind(c, name="EigValVecSym")
         use, intrinsic :: iso_c_binding
         use shtools, only: EigValVecSym
         implicit none
@@ -2353,7 +2350,7 @@
     end subroutine cEigValVecSym
 
     subroutine cEigValVecSymTri(ain,ain_d0,ain_d1,n,eig,eig_d0,evec,evec_d0,evec_d1&
-                                   ,ul,exitstatus)  bind(c, name="cEigValVecSymTri")
+                                   ,ul,exitstatus)  bind(c, name="EigValVecSymTri")
         use, intrinsic :: iso_c_binding
         use shtools, only: EigValVecSymTri
         implicit none
@@ -2371,7 +2368,7 @@
         call EigValVecSymTri(ain,n,eig,evec,ul=ul,exitstatus=exitstatus)
     end subroutine cEigValVecSymTri
 
-    subroutine cEigValSym(ain,ain_d0,ain_d1,n,eval,eval_d0,ul)  bind(c, name="cEigValSym")
+    subroutine cEigValSym(ain,ain_d0,ain_d1,n,eval,eval_d0,ul)  bind(c, name="EigValSym")
         use, intrinsic :: iso_c_binding
         use shtools, only: EigValSym
         implicit none
@@ -2388,7 +2385,7 @@
     subroutine cSHRotateTapers(tapersrot,tapersrot_d0,tapersrot_d1,tapers,tapers_d0&
                                         ,tapers_d1,taper_order,taper_order_d0,lmax&
                                         ,nrot,x,x_d0,dj,dj_d0,dj_d1,dj_d2,exitstatus)  bind(c&
-                                        , name="cSHRotateTapers")
+                                        , name="SHRotateTapers")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRotateTapers
         implicit none
@@ -2413,7 +2410,7 @@
     end subroutine cSHRotateTapers
 
     subroutine cSlepianCoeffs(falpha,falpha_d0,galpha,galpha_d0,galpha_d1,flm,flm_d0&
-                                    ,flm_d1,flm_d2,lmax,nmax,exitstatus)  bind(c, name="cSlepianCoeffs")
+                                    ,flm_d1,flm_d2,lmax,nmax,exitstatus)  bind(c, name="SlepianCoeffs")
         use, intrinsic :: iso_c_binding
         use shtools, only: SlepianCoeffs
         implicit none
@@ -2434,7 +2431,7 @@
 
     subroutine cSlepianCoeffsToSH(flm,flm_d0,flm_d1,flm_d2,falpha,falpha_d0,galpha&
                                      ,galpha_d0,galpha_d1,lmax,nmax,exitstatus)  bind(c&
-                                     , name="cSlepianCoeffsToSH")
+                                     , name="SlepianCoeffsToSH")
         use, intrinsic :: iso_c_binding
         use shtools, only: SlepianCoeffsToSH
         implicit none
@@ -2454,7 +2451,7 @@
     end subroutine cSlepianCoeffsToSH
 
     subroutine cSHSCouplingMatrix(kij,kij_d0,kij_d1,galpha,galpha_d0,galpha_d1,lmax&
-                                     ,nmax,exitstatus)  bind(c, name="cSHSCouplingMatrix")
+                                     ,nmax,exitstatus)  bind(c, name="SHSCouplingMatrix")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHSCouplingMatrix
         implicit none
@@ -2471,7 +2468,7 @@
     end subroutine cSHSCouplingMatrix
 
     subroutine cSHSlepianVar(l,galpha,galpha_d0,galpha_d1,galpha_order,galpha_order_d0&
-                              ,lmax,kmax,Sff,Sff_d0,variance,exitstatus)  bind(c, name="cSHSlepianVar")
+                              ,lmax,kmax,Sff,Sff_d0,variance,exitstatus)  bind(c, name="SHSlepianVar")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHSlepianVar
         implicit none
@@ -2492,7 +2489,7 @@
 
     subroutine cSHSCouplingMatrixCap(kij,kij_d0,kij_d1,galpha,galpha_d0,galpha_d1&
                                         ,galpha_order,galpha_order_d0,lmax,nmax,exitstatus)  bind(c&
-                                        , name="cSHSCouplingMatrixCap")
+                                        , name="SHSCouplingMatrixCap")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHSCouplingMatrixCap
         implicit none

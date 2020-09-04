@@ -1,0 +1,5 @@
+SHCilmToVector:
+    existing_dim : ['lmax']
+    args:
+        cilm: ['2', 'lmax+1', 'lmax+1']
+        vector: ['(lmax+1)**2']

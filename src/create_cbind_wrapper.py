@@ -197,7 +197,15 @@ def modify_subroutine(subroutine, explicite_dim=None):
                if 'existing_dim' in explicite_dim:
                    for dim in explicite_dim['existing_dim']:
                        idx = subroutine['sortvars'].index(dim)
-                       subroutine['sortvars'].insert(0, subroutine['sortvars'].pop(idx)) 
+                       subroutine['sortvars'].insert(0, subroutine['sortvars'].pop(idx))
+               if 'new_dim' in explicite_dim:
+                   for dim in explicite_dim['new_dim']:
+                       if dim in varattribs['dimension']:
+                           if dim not in subroutine['args']:
+                               idx = subroutine['args'].index(varname)
+                               insert_dim(subroutine, dim, idx+1, 0)
+
+                       
                            
         if has_assumed_shape(varattribs):
             make_explicit(subroutine, varname, varattribs)
@@ -249,7 +257,7 @@ def make_explicit(subroutine, varname, varattribs):
         varattribs['dimension'] = [dimname]
         insert_dim(subroutine,dimname,argpos,decpos)
     elif varname=='cilm':
-        dimname = 'cilm_d'
+        dimname = 'cilm_dim'
         varattribs['dimension'] = ['2', dimname, dimname]
         insert_dim(subroutine,dimname,argpos,decpos)
     else:

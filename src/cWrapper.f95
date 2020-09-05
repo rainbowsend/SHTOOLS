@@ -1,10 +1,9 @@
-    subroutine cPlmBar(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmBar")
+    subroutine cPlmBar(p,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmBar")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmBar
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -12,16 +11,13 @@
         call PlmBar(p,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmBar
 
-    subroutine cPlmBar_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                           , name="PlmBar_d1")
+    subroutine cPlmBar_d1(p,dp1,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmBar_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmBar_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -29,39 +25,35 @@
         call PlmBar_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmBar_d1
 
-    subroutine cPlBar(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlBar")
+    subroutine cPlBar(p,lmax,z,exitstatus)  bind(c, name="PlBar")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlBar
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlBar(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlBar
 
-    subroutine cPlBar_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlBar_d1")
+    subroutine cPlBar_d1(p,dp1,lmax,z,exitstatus)  bind(c, name="PlBar_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlBar_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlBar_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlBar_d1
 
-    subroutine cPlmON(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmON")
+    subroutine cPlmON(p,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmON")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmON
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -69,16 +61,13 @@
         call PlmON(p,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmON
 
-    subroutine cPlmON_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                          , name="PlmON_d1")
+    subroutine cPlmON_d1(p,dp1,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmON_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmON_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -86,39 +75,35 @@
         call PlmON_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmON_d1
 
-    subroutine cPlON(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlON")
+    subroutine cPlON(p,lmax,z,exitstatus)  bind(c, name="PlON")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlON
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlON(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlON
 
-    subroutine cPlON_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlON_d1")
+    subroutine cPlON_d1(p,dp1,lmax,z,exitstatus)  bind(c, name="PlON_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlON_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlON_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlON_d1
 
-    subroutine cPlmSchmidt(p,p_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmSchmidt")
+    subroutine cPlmSchmidt(p,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmSchmidt")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmSchmidt
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -126,16 +111,13 @@
         call PlmSchmidt(p,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmSchmidt
 
-    subroutine cPlmSchmidt_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,cnorm,exitstatus)  bind(c&
-                               , name="PlmSchmidt_d1")
+    subroutine cPlmSchmidt_d1(p,dp1,lmax,z,csphase,cnorm,exitstatus)  bind(c, name="PlmSchmidt_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlmSchmidt_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -143,82 +125,72 @@
         call PlmSchmidt_d1(p,dp1,lmax,z,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cPlmSchmidt_d1
 
-    subroutine cPlSchmidt(p,p_d0,lmax,z,exitstatus)  bind(c, name="PlSchmidt")
+    subroutine cPlSchmidt(p,lmax,z,exitstatus)  bind(c, name="PlSchmidt")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlSchmidt
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlSchmidt(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPlSchmidt
 
-    subroutine cPlSchmidt_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PlSchmidt_d1")
+    subroutine cPlSchmidt_d1(p,dp1,lmax,z,exitstatus)  bind(c, name="PlSchmidt_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PlSchmidt_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PlSchmidt_d1(p,dp1,lmax,z,exitstatus=exitstatus)
     end subroutine cPlSchmidt_d1
 
-    subroutine cPLegendreA(p,p_d0,lmax,z,csphase,exitstatus)  bind(c, name="PLegendreA")
+    subroutine cPLegendreA(p,lmax,z,csphase,exitstatus)  bind(c, name="PLegendreA")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendreA
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PLegendreA(p,lmax,z,csphase=csphase,exitstatus=exitstatus)
     end subroutine cPLegendreA
 
-    subroutine cPLegendreA_d1(p,p_d0,dp1,dp1_d0,lmax,z,csphase,exitstatus)  bind(c&
-                               , name="PLegendreA_d1")
+    subroutine cPLegendreA_d1(p,dp1,lmax,z,csphase,exitstatus)  bind(c, name="PLegendreA_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendreA_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: p
+        real(kind=c_double), dimension((lmax+1)*(lmax+2)/2),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PLegendreA_d1(p,dp1,lmax,z,csphase=csphase,exitstatus=exitstatus)
     end subroutine cPLegendreA_d1
 
-    subroutine cPLegendre(p,p_d0,lmax,z,exitstatus)  bind(c, name="PLegendre")
+    subroutine cPLegendre(p,lmax,z,exitstatus)  bind(c, name="PLegendre")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendre
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PLegendre(p,lmax,z,exitstatus=exitstatus)
     end subroutine cPLegendre
 
-    subroutine cPLegendre_d1(p,p_d0,dp1,dp1_d0,lmax,z,exitstatus)  bind(c, name="PLegendre_d1")
+    subroutine cPLegendre_d1(p,dp1,lmax,z,exitstatus)  bind(c, name="PLegendre_d1")
         use, intrinsic :: iso_c_binding
         use shtools, only: PLegendre_d1
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: p_d0
-        real(kind=c_double), dimension(p_d0),intent(out) :: p
-        integer(kind=c_int), value,intent(in) :: dp1_d0
-        real(kind=c_double), dimension(dp1_d0),intent(out) :: dp1
+        real(kind=c_double), dimension(lmax+1),intent(out) :: p
+        real(kind=c_double), dimension(lmax+1),intent(out) :: dp1
         real(kind=c_double), value,intent(in) :: z
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call PLegendre_d1(p,dp1,lmax,z,exitstatus=exitstatus)
@@ -234,16 +206,16 @@
         cPlmIndex=PlmIndex(l,m)
     end function cPlmIndex
 
-    subroutine cSHExpandDH(grid,grid_d0,grid_d1,n,cilm,cilm_d,lmax,norm,sampling,csphase&
-                               ,lmax_calc,exitstatus)  bind(c, name="SHExpandDH")
+    subroutine cSHExpandDH(grid,grid_d0,grid_d1,n,cilm,cilm_dim,lmax,norm,sampling&
+                               ,csphase,lmax_calc,exitstatus)  bind(c, name="SHExpandDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandDH
         implicit none
         integer(kind=c_int), value,intent(in) :: grid_d0
         integer(kind=c_int), value,intent(in) :: grid_d1
         real(kind=c_double), dimension(grid_d0,grid_d1),intent(in) :: grid
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: n
         integer(kind=c_int), intent(out) :: lmax
         integer(kind=c_int), optional,intent(in) :: norm
@@ -255,13 +227,13 @@
                             ,lmax_calc=lmax_calc,exitstatus=exitstatus)
     end subroutine cSHExpandDH
 
-    subroutine cMakeGridDH(griddh,griddh_d0,griddh_d1,n,cilm,cilm_d,lmax,norm,sampling&
+    subroutine cMakeGridDH(griddh,griddh_d0,griddh_d1,n,cilm,cilm_dim,lmax,norm,sampling&
                                  ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="MakeGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridDH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: griddh_d0
         integer(kind=c_int), value,intent(in) :: griddh_d1
         real(kind=c_double), dimension(griddh_d0,griddh_d1),intent(out) :: griddh
@@ -277,7 +249,7 @@
                               ,lmax_calc=lmax_calc,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGridDH
 
-    subroutine cSHExpandDHC(grid,grid_d0,grid_d1,n,cilm,cilm_d,lmax,norm,sampling&
+    subroutine cSHExpandDHC(grid,grid_d0,grid_d1,n,cilm,cilm_dim,lmax,norm,sampling&
                                 ,csphase,lmax_calc,exitstatus)  bind(c, name="SHExpandDHC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandDHC
@@ -285,8 +257,8 @@
         integer(kind=c_int), value,intent(in) :: grid_d0
         integer(kind=c_int), value,intent(in) :: grid_d1
         complex(kind=c_double_complex), dimension(grid_d0,grid_d1),intent(in) :: grid
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        complex(kind=c_double_complex), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: n
         integer(kind=c_int), intent(out) :: lmax
         integer(kind=c_int), optional,intent(in) :: norm
@@ -298,13 +270,13 @@
                              ,lmax_calc=lmax_calc,exitstatus=exitstatus)
     end subroutine cSHExpandDHC
 
-    subroutine cMakeGridDHC(griddh,griddh_d0,griddh_d1,n,cilm,cilm_d,lmax,norm,sampling&
+    subroutine cMakeGridDHC(griddh,griddh_d0,griddh_d1,n,cilm,cilm_dim,lmax,norm,sampling&
                                   ,csphase,lmax_calc,extend,exitstatus)  bind(c, name="MakeGridDHC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridDHC
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        complex(kind=c_double_complex), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: griddh_d0
         integer(kind=c_int), value,intent(in) :: griddh_d1
         complex(kind=c_double_complex), dimension(griddh_d0,griddh_d1),intent(out) :: griddh
@@ -320,19 +292,14 @@
                                ,lmax_calc=lmax_calc,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGridDHC
 
-    subroutine cSHGLQ(lmax,zero,zero_d0,w,w_d0,plx,plx_d0,plx_d1,norm,csphase,cnorm&
-                          ,exitstatus)  bind(c, name="SHGLQ")
+    subroutine cSHGLQ(lmax,zero,w,plx,norm,csphase,cnorm,exitstatus)  bind(c, name="SHGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHGLQ
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: zero_d0
-        real(kind=c_double), dimension(zero_d0),intent(out) :: zero
-        integer(kind=c_int), value,intent(in) :: w_d0
-        real(kind=c_double), dimension(w_d0),intent(out) :: w
-        integer(kind=c_int), value,intent(in) :: plx_d0
-        integer(kind=c_int), value,intent(in) :: plx_d1
-        real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(out) :: plx
+        real(kind=c_double), dimension(lmax+1),intent(out) :: zero
+        real(kind=c_double), dimension(lmax+1),intent(out) :: w
+        real(kind=c_double), optional,dimension(lmax+1,(lmax+1)*(lmax+2)/2),intent(out) :: plx
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: cnorm
@@ -340,25 +307,18 @@
         call SHGLQ(lmax,zero,w,plx=plx,norm=norm,csphase=csphase,cnorm=cnorm,exitstatus=exitstatus)
     end subroutine cSHGLQ
 
-    subroutine cSHExpandGLQ(cilm,cilm_d,lmax,gridglq,gridglq_d0,gridglq_d1,w,w_d0&
-                                ,plx,plx_d0,plx_d1,zero,zero_d0,norm,csphase,lmax_calc&
+    subroutine cSHExpandGLQ(cilm,cilm_dim,lmax,gridglq,w,plx,zero,norm,csphase,lmax_calc&
                                 ,exitstatus)  bind(c, name="SHExpandGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandGLQ
         implicit none
-        integer(kind=c_int), value,intent(in) :: w_d0
-        real(kind=c_double), dimension(w_d0),intent(in) :: w
-        integer(kind=c_int), value,intent(in) :: gridglq_d0
-        integer(kind=c_int), value,intent(in) :: gridglq_d1
-        real(kind=c_double), dimension(gridglq_d0,gridglq_d1),intent(in) :: gridglq
-        integer(kind=c_int), value,intent(in) :: plx_d0
-        integer(kind=c_int), value,intent(in) :: plx_d1
-        real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
-        integer(kind=c_int), value,intent(in) :: zero_d0
-        real(kind=c_double), optional,dimension(zero_d0),intent(in) :: zero
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
+        real(kind=c_double), dimension(lmax+1),intent(in) :: w
+        real(kind=c_double), dimension(lmax+1,2*lmax+1),intent(in) :: gridglq
+        real(kind=c_double), optional,dimension(lmax+1,(lmax+1)*(lmax+2)/2),intent(in) :: plx
+        real(kind=c_double), optional,dimension(lmax+1),intent(in) :: zero
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: lmax_calc
@@ -367,23 +327,20 @@
                              ,lmax_calc=lmax_calc,exitstatus=exitstatus)
     end subroutine cSHExpandGLQ
 
-    subroutine cMakeGridGLQ(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_d,lmax,plx,plx_d0&
-                                   ,plx_d1,zero,zero_d0,norm,csphase,lmax_calc,extend&
-                                   ,exitstatus)  bind(c, name="MakeGridGLQ")
+    subroutine cMakeGridGLQ(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_dim,lmax,plx,zero&
+                                   ,norm,csphase,lmax_calc,extend,exitstatus)  bind(c&
+                                   , name="MakeGridGLQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridGLQ
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
-        integer(kind=c_int), value,intent(in) :: plx_d0
-        integer(kind=c_int), value,intent(in) :: plx_d1
-        real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
-        integer(kind=c_int), value,intent(in) :: zero_d0
-        real(kind=c_double), optional,dimension(zero_d0),intent(in) :: zero
+        integer(kind=c_int), value,intent(in) :: lmax
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        real(kind=c_double), optional,dimension(lmax+1,(lmax+1)*(lmax+2)/2),intent(in) :: plx
+        real(kind=c_double), optional,dimension(lmax+1),intent(in) :: zero
         integer(kind=c_int), value,intent(in) :: gridglq_d0
         integer(kind=c_int), value,intent(in) :: gridglq_d1
         real(kind=c_double), dimension(gridglq_d0,gridglq_d1),intent(out) :: gridglq
-        integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: lmax_calc
@@ -393,25 +350,18 @@
                                 ,lmax_calc=lmax_calc,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGridGLQ
 
-    subroutine cSHExpandGLQC(cilm,cilm_d,lmax,gridglq,gridglq_d0,gridglq_d1,w,w_d0&
-                                 ,plx,plx_d0,plx_d1,zero,zero_d0,norm,csphase,lmax_calc&
+    subroutine cSHExpandGLQC(cilm,cilm_dim,lmax,gridglq,w,plx,zero,norm,csphase,lmax_calc&
                                  ,exitstatus)  bind(c, name="SHExpandGLQC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandGLQC
         implicit none
-        integer(kind=c_int), value,intent(in) :: w_d0
-        real(kind=c_double), dimension(w_d0),intent(in) :: w
-        integer(kind=c_int), value,intent(in) :: gridglq_d0
-        integer(kind=c_int), value,intent(in) :: gridglq_d1
-        complex(kind=c_double_complex), dimension(gridglq_d0,gridglq_d1),intent(in) :: gridglq
-        integer(kind=c_int), value,intent(in) :: plx_d0
-        integer(kind=c_int), value,intent(in) :: plx_d1
-        real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
-        integer(kind=c_int), value,intent(in) :: zero_d0
-        real(kind=c_double), optional,dimension(zero_d0),intent(in) :: zero
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        complex(kind=c_double_complex), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
+        real(kind=c_double), dimension(lmax+1),intent(in) :: w
+        complex(kind=c_double_complex), dimension(lmax+1,2*lmax+1),intent(in) :: gridglq
+        real(kind=c_double), optional,dimension(lmax+1,(lmax+1)*(lmax+2)/2),intent(in) :: plx
+        real(kind=c_double), optional,dimension(lmax+1),intent(in) :: zero
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: lmax_calc
@@ -420,23 +370,20 @@
                               ,lmax_calc=lmax_calc,exitstatus=exitstatus)
     end subroutine cSHExpandGLQC
 
-    subroutine cMakeGridGLQC(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_d,lmax,plx,plx_d0&
-                                    ,plx_d1,zero,zero_d0,norm,csphase,lmax_calc,extend&
-                                    ,exitstatus)  bind(c, name="MakeGridGLQC")
+    subroutine cMakeGridGLQC(gridglq,gridglq_d0,gridglq_d1,cilm,cilm_dim,lmax,plx&
+                                    ,zero,norm,csphase,lmax_calc,extend,exitstatus)  bind(c&
+                                    , name="MakeGridGLQC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridGLQC
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        complex(kind=c_double_complex), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
-        integer(kind=c_int), value,intent(in) :: plx_d0
-        integer(kind=c_int), value,intent(in) :: plx_d1
-        real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
-        integer(kind=c_int), value,intent(in) :: zero_d0
-        real(kind=c_double), optional,dimension(zero_d0),intent(in) :: zero
+        integer(kind=c_int), value,intent(in) :: lmax
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        real(kind=c_double), optional,dimension(lmax+1,(lmax+1)*(lmax+2)/2),intent(in) :: plx
+        real(kind=c_double), optional,dimension(lmax+1),intent(in) :: zero
         integer(kind=c_int), value,intent(in) :: gridglq_d0
         integer(kind=c_int), value,intent(in) :: gridglq_d1
         complex(kind=c_double_complex), dimension(gridglq_d0,gridglq_d1),intent(out) :: gridglq
-        integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: lmax_calc
@@ -463,45 +410,39 @@
         call GLQGridCoord(latglq,longlq,lmax,nlat,nlong,extend=extend,exitstatus=exitstatus)
     end subroutine cGLQGridCoord
 
-    subroutine cSHExpandLSQ(cilm,cilm_d,d,d_d0,lat,lat_d0,lon,lon_d0,nmax,lmax,norm&
-                                ,chi2,csphase,weights,weights_d0,exitstatus)  bind(c&
-                                , name="SHExpandLSQ")
+    subroutine cSHExpandLSQ(cilm,cilm_dim,d,lat,lon,nmax,lmax,norm,chi2,csphase,weights&
+                                ,exitstatus)  bind(c, name="SHExpandLSQ")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHExpandLSQ
         implicit none
-        integer(kind=c_int), value,intent(in) :: d_d0
-        real(kind=c_double), dimension(d_d0),intent(in) :: d
-        integer(kind=c_int), value,intent(in) :: lat_d0
-        real(kind=c_double), dimension(lat_d0),intent(in) :: lat
-        integer(kind=c_int), value,intent(in) :: lon_d0
-        real(kind=c_double), dimension(lon_d0),intent(in) :: lon
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
-        integer(kind=c_int), value,intent(in) :: nmax
         integer(kind=c_int), value,intent(in) :: lmax
+        integer(kind=c_int), value,intent(in) :: nmax
+        real(kind=c_double), dimension(nmax),intent(in) :: d
+        real(kind=c_double), dimension(nmax),intent(in) :: lat
+        real(kind=c_double), dimension(nmax),intent(in) :: lon
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
         real(kind=c_double), optional,intent(out) :: chi2
-        integer(kind=c_int), value,intent(in) :: weights_d0
-        real(kind=c_double), optional,dimension(weights_d0),intent(in) :: weights
+        real(kind=c_double), optional,dimension(nmax),intent(in) :: weights
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHExpandLSQ(cilm,d,lat,lon,nmax,lmax,norm=norm,chi2=chi2,csphase=csphase&
                              ,weights=weights,exitstatus=exitstatus)
     end subroutine cSHExpandLSQ
 
-    subroutine cMakeGrid2d(grid,grid_d0,grid_d1,cilm,cilm_d,lmax,interval,nlat,nlong&
-                               ,norm,csphase,f,a,north,south,east,west,dealloc,exitstatus)  bind(c&
+    subroutine cMakeGrid2d(grid,nlon,cilm,cilm_dim,lmax,interval,nlat,nlong,norm,csphase&
+                               ,f,a,north,south,east,west,dealloc,exitstatus)  bind(c&
                                , name="MakeGrid2d")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGrid2d
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
-        real(kind=c_double), value,intent(in) :: interval
-        integer(kind=c_int), value,intent(in) :: grid_d0
-        integer(kind=c_int), value,intent(in) :: grid_d1
-        real(kind=c_double), dimension(grid_d0,grid_d1),intent(out) :: grid
+        integer(kind=c_int), value,intent(in) :: nlon
         integer(kind=c_int), value,intent(in) :: lmax
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        real(kind=c_double), value,intent(in) :: interval
+        real(kind=c_double), dimension(nlat,nlon),intent(out) :: grid
         integer(kind=c_int), intent(out) :: nlat
         integer(kind=c_int), intent(out) :: nlong
         integer(kind=c_int), optional,intent(in) :: norm
@@ -519,14 +460,14 @@
                             ,exitstatus=exitstatus)
     end subroutine cMakeGrid2d
 
-    function cMakeGridPoint(cilm,cilm_d,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
+    function cMakeGridPoint(cilm,cilm_dim,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
                                 , name="MakeGridPoint")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridPoint
         implicit none
         real(kind=c_double) :: cMakeGridPoint
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: lat
         real(kind=c_double), value,intent(in) :: lon
         integer(kind=c_int), value,intent(in) :: lmax
@@ -536,14 +477,14 @@
         cMakeGridPoint=MakeGridPoint(cilm,lmax,lat,lon,norm=norm,csphase=csphase,dealloc=dealloc)
     end function cMakeGridPoint
 
-    function cMakeGridPointC(cilm,cilm_d,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
+    function cMakeGridPointC(cilm,cilm_dim,lmax,lat,lon,norm,csphase,dealloc)  bind(c&
                                  , name="MakeGridPointC")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGridPointC
         implicit none
         complex(kind=c_double_complex) :: cMakeGridPointC
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        complex(kind=c_double_complex), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: lat
         real(kind=c_double), value,intent(in) :: lon
         integer(kind=c_int), value,intent(in) :: lmax
@@ -554,26 +495,16 @@
                                            ,dealloc=dealloc)
     end function cMakeGridPointC
 
-    subroutine cSHMultiply(shout,shout_d0,shout_d1,shout_d2,sh1,sh1_d0,sh1_d1,sh1_d2&
-                                ,lmax1,sh2,sh2_d0,sh2_d1,sh2_d2,lmax2,precomp,norm&
-                                ,csphase,exitstatus)  bind(c, name="SHMultiply")
+    subroutine cSHMultiply(shout,sh1,lmax1,sh2,lmax2,precomp,norm,csphase,exitstatus)  bind(c&
+                                , name="SHMultiply")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiply
         implicit none
-        integer(kind=c_int), value,intent(in) :: shout_d0
-        integer(kind=c_int), value,intent(in) :: shout_d1
-        integer(kind=c_int), value,intent(in) :: shout_d2
-        real(kind=c_double), dimension(shout_d0,shout_d1,shout_d2),intent(out) :: shout
-        integer(kind=c_int), value,intent(in) :: sh1_d0
-        integer(kind=c_int), value,intent(in) :: sh1_d1
-        integer(kind=c_int), value,intent(in) :: sh1_d2
-        real(kind=c_double), dimension(sh1_d0,sh1_d1,sh1_d2),intent(in) :: sh1
-        integer(kind=c_int), value,intent(in) :: sh2_d0
-        integer(kind=c_int), value,intent(in) :: sh2_d1
-        integer(kind=c_int), value,intent(in) :: sh2_d2
-        real(kind=c_double), dimension(sh2_d0,sh2_d1,sh2_d2),intent(in) :: sh2
-        integer(kind=c_int), value,intent(in) :: lmax1
         integer(kind=c_int), value,intent(in) :: lmax2
+        integer(kind=c_int), value,intent(in) :: lmax1
+        real(kind=c_double), dimension(2,lmax1+lmax2+1,lmax1+lmax2+1),intent(out) :: shout
+        real(kind=c_double), dimension(2,lmax1+1,lmax1+1),intent(in) :: sh1
+        real(kind=c_double), dimension(2,lmax2+1,lmax2+1),intent(in) :: sh2
         integer(kind=c_int), optional,intent(in) :: precomp
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(in) :: csphase
@@ -582,49 +513,38 @@
                              ,exitstatus=exitstatus)
     end subroutine cSHMultiply
 
-    subroutine cSHRead(filename,filename_d1,cilm,cilm_d,lmax,skip,header,header_d0&
-                               ,error,error_d0,error_d1,error_d2,exitstatus)  bind(c&
-                               , name="SHRead")
+    subroutine cSHRead(filename,filename_d1,cilm,cilm_dim,lmax,skip,header,header_d0&
+                               ,error,exitstatus)  bind(c, name="SHRead")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRead
         implicit none
+        integer(kind=c_int), value,intent(in) :: cilm_dim
         integer(kind=c_int), value,intent(in) :: filename_d1
         character(kind=c_char), dimension(filename_d1),intent(in) :: filename
         integer(kind=c_int), intent(out) :: lmax
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: header_d0
         real(kind=c_double), optional,dimension(header_d0),intent(out) :: header
-        integer(kind=c_int), value,intent(in) :: error_d0
-        integer(kind=c_int), value,intent(in) :: error_d1
-        integer(kind=c_int), value,intent(in) :: error_d2
-        real(kind=c_double), optional,dimension(error_d0,error_d1,error_d2),intent(out) :: error
+        real(kind=c_double), optional,dimension(2,cilm_dim,cilm_dim),intent(out) :: error
         integer(kind=c_int), optional,intent(in) :: skip
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        
-        character(filename_d1) :: filename2
-        filename2 = TRANSFER(filename,filename2)
-        
-        call SHRead(filename2,cilm,lmax,header=header,error=error,skip=skip,exitstatus=exitstatus)
+        call SHRead(filename,cilm,lmax,skip=skip,header=header,error=error,exitstatus=exitstatus)
     end subroutine cSHRead
 
-    subroutine cSHRead2(filename,filename_d1,cilm,cilm_d,lmax,gm,r0_pot,error,error_d0&
-                                ,error_d1,error_d2,dot,dot_d0,dot_d1,dot_d2,doystart&
-                                ,doyend,epoch,exitstatus)  bind(c, name="SHRead2")
+    subroutine cSHRead2(filename,filename_d1,cilm,cilm_dim,lmax,gm,r0_pot,error,dot&
+                                ,dot_d0,dot_d1,dot_d2,doystart,doyend,epoch,exitstatus)  bind(c&
+                                , name="SHRead2")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRead2
         implicit none
+        integer(kind=c_int), value,intent(in) :: cilm_dim
         integer(kind=c_int), value,intent(in) :: filename_d1
         character(kind=c_char), dimension(filename_d1),intent(in) :: filename
         integer(kind=c_int), intent(out) :: lmax
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         real(kind=c_double), intent(out) :: gm
         real(kind=c_double), intent(out) :: r0_pot
-        integer(kind=c_int), value,intent(in) :: error_d0
-        integer(kind=c_int), value,intent(in) :: error_d1
-        integer(kind=c_int), value,intent(in) :: error_d2
-        real(kind=c_double), optional,dimension(error_d0,error_d1,error_d2),intent(out) :: error
+        real(kind=c_double), optional,dimension(2,cilm_dim,cilm_dim),intent(out) :: error
         integer(kind=c_int), value,intent(in) :: dot_d0
         integer(kind=c_int), value,intent(in) :: dot_d1
         integer(kind=c_int), value,intent(in) :: dot_d2
@@ -633,74 +553,59 @@
         real(kind=c_double), optional,intent(out) :: doyend
         real(kind=c_double), optional,intent(out) :: epoch
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        
-        character(filename_d1) :: filename2
-        filename2 = TRANSFER(filename,filename2)
-        
-        call SHRead2(filename2,cilm,lmax,gm,r0_pot,error=error,dot=dot,doystart=doystart&
+        call SHRead2(filename,cilm,lmax,gm,r0_pot,error=error,dot=dot,doystart=doystart&
                              ,doyend=doyend,epoch=epoch,exitstatus=exitstatus)
     end subroutine cSHRead2
 
-    subroutine cSHReadJPL(filename,filename_d1,cilm,cilm_d,lmax,error,error_d0,error_d1&
-                                  ,error_d2,gm,formatstring,exitstatus)  bind(c, name="SHReadJPL")
+    subroutine cSHReadJPL(filename,filename_d1,cilm,cilm_dim,lmax,error,gm,formatstring&
+                                  ,exitstatus)  bind(c, name="SHReadJPL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHReadJPL
         implicit none
+        integer(kind=c_int), value,intent(in) :: cilm_dim
         integer(kind=c_int), value,intent(in) :: filename_d1
         character(kind=c_char), dimension(filename_d1),intent(in) :: filename
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
-        integer(kind=c_int), value,intent(in) :: error_d0
-        integer(kind=c_int), value,intent(in) :: error_d1
-        integer(kind=c_int), value,intent(in) :: error_d2
-        real(kind=c_double), optional,dimension(error_d0,error_d1,error_d2),intent(out) :: error
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
+        real(kind=c_double), optional,dimension(2,cilm_dim,cilm_dim),intent(out) :: error
         real(kind=c_double), optional,dimension(2),intent(out) :: gm
         character(kind=c_char), optional,intent(in) :: formatstring
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        
-        character(filename_d1) :: filename2
-        character(6) :: formatstring2
-        
-        filename2 = TRANSFER(filename,filename2)
-        formatstring2 = TRANSFER(formatstring, formatstring2)
-        
-        call SHReadJPL(filename2,cilm,lmax,error=error,gm=gm,formatstring=formatstring2&
+        call SHReadJPL(filename,cilm,lmax,error=error,gm=gm,formatstring=formatstring&
                                ,exitstatus=exitstatus)
     end subroutine cSHReadJPL
 
-    subroutine cSHCilmToVector(cilm,vector,lmax,exitstatus)  bind(c, name="SHCilmToVector")
+    subroutine cSHCilmToVector(cilm,cilm_dim,vector,lmax,exitstatus)  bind(c, name="SHCilmToVector")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCilmToVector
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        real(kind=c_double), dimension(2,lmax+1,lmax+1),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), dimension((lmax+1)**2),intent(out) :: vector
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHCilmToVector(cilm,vector,lmax,exitstatus=exitstatus)
     end subroutine cSHCilmToVector
 
-    subroutine cSHVectorToCilm(vector,vector_d0,cilm,cilm_d,lmax,exitstatus)  bind(c&
-                                     , name="SHVectorToCilm")
+    subroutine cSHVectorToCilm(vector,cilm,cilm_dim,lmax,exitstatus)  bind(c, name="SHVectorToCilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHVectorToCilm
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
-        integer(kind=c_int), value,intent(in) :: vector_d0
-        real(kind=c_double), dimension(vector_d0),intent(in) :: vector
         integer(kind=c_int), value,intent(in) :: lmax
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
+        real(kind=c_double), dimension((lmax+1)**2),intent(in) :: vector
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHVectorToCilm(vector,cilm,lmax,exitstatus=exitstatus)
     end subroutine cSHVectorToCilm
 
-    subroutine cSHCilmToCindex(cilm,cilm_d,cindex,cindex_d0,cindex_d1,degmax,exitstatus)  bind(c&
+    subroutine cSHCilmToCindex(cilm,cilm_dim,cindex,cindex_d0,cindex_d1,degmax,exitstatus)  bind(c&
                                    , name="SHCilmToCindex")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCilmToCindex
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: cindex_d0
         integer(kind=c_int), value,intent(in) :: cindex_d1
         real(kind=c_double), dimension(cindex_d0,cindex_d1),intent(out) :: cindex
@@ -709,13 +614,13 @@
         call SHCilmToCindex(cilm,cindex,degmax=degmax,exitstatus=exitstatus)
     end subroutine cSHCilmToCindex
 
-    subroutine cSHCindexToCilm(cindex,cindex_d0,cindex_d1,cilm,cilm_d,degmax,exitstatus)  bind(c&
+    subroutine cSHCindexToCilm(cindex,cindex_d0,cindex_d1,cilm,cilm_dim,degmax,exitstatus)  bind(c&
                                      , name="SHCindexToCilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCindexToCilm
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: cindex_d0
         integer(kind=c_int), value,intent(in) :: cindex_d1
         real(kind=c_double), dimension(cindex_d0,cindex_d1),intent(in) :: cindex
@@ -724,19 +629,14 @@
         call SHCindexToCilm(cindex,cilm,degmax=degmax,exitstatus=exitstatus)
     end subroutine cSHCindexToCilm
 
-    subroutine cSHrtoc(rcilm,rcilm_d0,rcilm_d1,rcilm_d2,ccilm,ccilm_d0,ccilm_d1,ccilm_d2&
-                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="SHrtoc")
+    subroutine cSHrtoc(rcilm,cilm_dim,ccilm,degmax,convention,switchcs,exitstatus)  bind(c&
+                            , name="SHrtoc")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHrtoc
         implicit none
-        integer(kind=c_int), value,intent(in) :: rcilm_d0
-        integer(kind=c_int), value,intent(in) :: rcilm_d1
-        integer(kind=c_int), value,intent(in) :: rcilm_d2
-        real(kind=c_double), dimension(rcilm_d0,rcilm_d1,rcilm_d2),intent(in) :: rcilm
-        integer(kind=c_int), value,intent(in) :: ccilm_d0
-        integer(kind=c_int), value,intent(in) :: ccilm_d1
-        integer(kind=c_int), value,intent(in) :: ccilm_d2
-        real(kind=c_double), dimension(ccilm_d0,ccilm_d1,ccilm_d2),intent(out) :: ccilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: rcilm
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: ccilm
         integer(kind=c_int), optional,intent(in) :: degmax
         integer(kind=c_int), optional,intent(in) :: convention
         integer(kind=c_int), optional,intent(in) :: switchcs
@@ -745,19 +645,14 @@
                          ,exitstatus=exitstatus)
     end subroutine cSHrtoc
 
-    subroutine cSHctor(ccilm,ccilm_d0,ccilm_d1,ccilm_d2,rcilm,rcilm_d0,rcilm_d1,rcilm_d2&
-                            ,degmax,convention,switchcs,exitstatus)  bind(c, name="SHctor")
+    subroutine cSHctor(ccilm,cilm_dim,rcilm,degmax,convention,switchcs,exitstatus)  bind(c&
+                            , name="SHctor")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHctor
         implicit none
-        integer(kind=c_int), value,intent(in) :: ccilm_d0
-        integer(kind=c_int), value,intent(in) :: ccilm_d1
-        integer(kind=c_int), value,intent(in) :: ccilm_d2
-        real(kind=c_double), dimension(ccilm_d0,ccilm_d1,ccilm_d2),intent(in) :: ccilm
-        integer(kind=c_int), value,intent(in) :: rcilm_d0
-        integer(kind=c_int), value,intent(in) :: rcilm_d1
-        integer(kind=c_int), value,intent(in) :: rcilm_d2
-        real(kind=c_double), dimension(rcilm_d0,rcilm_d1,rcilm_d2),intent(out) :: rcilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: ccilm
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: rcilm
         integer(kind=c_int), optional,intent(in) :: degmax
         integer(kind=c_int), optional,intent(in) :: convention
         integer(kind=c_int), optional,intent(in) :: switchcs
@@ -766,59 +661,41 @@
                          ,exitstatus=exitstatus)
     end subroutine cSHctor
 
-    subroutine cdjpi2(dj,dj_d0,dj_d1,dj_d2,lmax,exitstatus)  bind(c, name="djpi2")
+    subroutine cdjpi2(dj,lmax,exitstatus)  bind(c, name="djpi2")
         use, intrinsic :: iso_c_binding
         use shtools, only: djpi2
         implicit none
         integer(kind=c_int), value,intent(in) :: lmax
-        integer(kind=c_int), value,intent(in) :: dj_d0
-        integer(kind=c_int), value,intent(in) :: dj_d1
-        integer(kind=c_int), value,intent(in) :: dj_d2
-        real(kind=c_double), dimension(dj_d0,dj_d1,dj_d2),intent(out) :: dj
+        real(kind=c_double), dimension(lmax+1,lmax+1,lmax+1),intent(out) :: dj
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call djpi2(dj,lmax,exitstatus=exitstatus)
     end subroutine cdjpi2
 
-    subroutine cSHRotateCoef(x,cof,cof_d0,cof_d1,rcof,rcof_d0,rcof_d1,dj,dj_d0,dj_d1&
-                              ,dj_d2,lmax,exitstatus)  bind(c, name="SHRotateCoef")
+    subroutine cSHRotateCoef(x,cof,cof_d0,cof_d1,rcof,dj,lmax,exitstatus)  bind(c&
+                              , name="SHRotateCoef")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRotateCoef
         implicit none
+        integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cof_d0
         integer(kind=c_int), value,intent(in) :: cof_d1
         real(kind=c_double), dimension(cof_d0,cof_d1),intent(in) :: cof
-        integer(kind=c_int), value,intent(in) :: dj_d0
-        integer(kind=c_int), value,intent(in) :: dj_d1
-        integer(kind=c_int), value,intent(in) :: dj_d2
-        real(kind=c_double), dimension(dj_d0,dj_d1,dj_d2),intent(in) :: dj
+        real(kind=c_double), dimension(lmax+1,lmax+1,lmax+1),intent(in) :: dj
         real(kind=c_double), dimension(3),intent(in) :: x
-        integer(kind=c_int), value,intent(in) :: rcof_d0
-        integer(kind=c_int), value,intent(in) :: rcof_d1
-        real(kind=c_double), dimension(rcof_d0,rcof_d1),intent(out) :: rcof
-        integer(kind=c_int), value,intent(in) :: lmax
+        real(kind=c_double), dimension(2,(lmax+1)*(lmax+2)/2),intent(out) :: rcof
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHRotateCoef(x,cof,rcof,dj,lmax,exitstatus=exitstatus)
     end subroutine cSHRotateCoef
 
-    subroutine cSHRotateRealCoef(cilmrot,cilmrot_d0,cilmrot_d1,cilmrot_d2,cilm,cilm_d&
-                                        ,lmax,x,x_d0,dj,dj_d0,dj_d1,dj_d2,exitstatus)  bind(c&
-                                        , name="SHRotateRealCoef")
+    subroutine cSHRotateRealCoef(cilmrot,cilm,lmax,x,dj,exitstatus)  bind(c, name="SHRotateRealCoef")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHRotateRealCoef
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
-        integer(kind=c_int), value,intent(in) :: x_d0
-        real(kind=c_double), dimension(x_d0),intent(in) :: x
-        integer(kind=c_int), value,intent(in) :: dj_d0
-        integer(kind=c_int), value,intent(in) :: dj_d1
-        integer(kind=c_int), value,intent(in) :: dj_d2
-        real(kind=c_double), dimension(dj_d0,dj_d1,dj_d2),intent(in) :: dj
-        integer(kind=c_int), value,intent(in) :: cilmrot_d0
-        integer(kind=c_int), value,intent(in) :: cilmrot_d1
-        integer(kind=c_int), value,intent(in) :: cilmrot_d2
-        real(kind=c_double), dimension(cilmrot_d0,cilmrot_d1,cilmrot_d2),intent(out) :: cilmrot
         integer(kind=c_int), value,intent(in) :: lmax
+        real(kind=c_double), dimension(2,lmax+1,lmax+1),intent(in) :: cilm
+        real(kind=c_double), dimension(3),intent(in) :: x
+        real(kind=c_double), dimension(lmax+1,lmax+1,lmax+1),intent(in) :: dj
+        real(kind=c_double), dimension(2,lmax+1,lmax+1),intent(out) :: cilmrot
         integer(kind=c_int), optional,intent(out) :: exitstatus
         call SHRotateRealCoef(cilmrot,cilm,lmax,x,dj,exitstatus=exitstatus)
     end subroutine cSHRotateRealCoef
@@ -1721,15 +1598,15 @@
         call SphericalCapCoef(coef,theta,lmax=lmax,exitstatus=exitstatus)
     end subroutine cSphericalCapCoef
 
-    subroutine cMakeGravGridDH(cilm,cilm_d,lmax,gm,r0,a,f,rad,rad_d0,rad_d1,theta&
+    subroutine cMakeGravGridDH(cilm,cilm_dim,lmax,gm,r0,a,f,rad,rad_d0,rad_d1,theta&
                                    ,theta_d0,theta_d1,phi,phi_d0,phi_d1,total,total_d0&
                                    ,total_d1,n,sampling,lmax_calc,omega,normal_gravity&
                                    ,pot,pot_d0,pot_d1,extend,exitstatus)  bind(c, name="MakeGravGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGravGridDH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: gm
         real(kind=c_double), value,intent(in) :: r0
         real(kind=c_double), value,intent(in) :: a
@@ -1762,16 +1639,16 @@
                                 ,pot=pot,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGravGridDH
 
-    subroutine cMakeGravGradGridDH(cilm,cilm_d,lmax,gm,r0,a,f,vxx,vxx_d0,vxx_d1,vyy&
-                                       ,vyy_d0,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0&
+    subroutine cMakeGravGradGridDH(cilm,cilm_dim,lmax,gm,r0,a,f,vxx,vxx_d0,vxx_d1&
+                                       ,vyy,vyy_d0,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0&
                                        ,vxy_d1,vxz,vxz_d0,vxz_d1,vyz,vyz_d0,vyz_d1&
                                        ,n,sampling,lmax_calc,extend,exitstatus)  bind(c&
                                        , name="MakeGravGradGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGravGradGridDH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: gm
         real(kind=c_double), value,intent(in) :: r0
         real(kind=c_double), value,intent(in) :: a
@@ -1804,15 +1681,16 @@
                                     ,lmax_calc=lmax_calc,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGravGradGridDH
 
-    subroutine cMakeMagGradGridDH(cilm,cilm_d,lmax,r0,a,f,vxx,vxx_d0,vxx_d1,vyy,vyy_d0&
-                                      ,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0,vxy_d1&
-                                      ,vxz,vxz_d0,vxz_d1,vyz,vyz_d0,vyz_d1,n,sampling&
-                                      ,lmax_calc,extend,exitstatus)  bind(c, name="MakeMagGradGridDH")
+    subroutine cMakeMagGradGridDH(cilm,cilm_dim,lmax,r0,a,f,vxx,vxx_d0,vxx_d1,vyy&
+                                      ,vyy_d0,vyy_d1,vzz,vzz_d0,vzz_d1,vxy,vxy_d0&
+                                      ,vxy_d1,vxz,vxz_d0,vxz_d1,vyz,vyz_d0,vyz_d1&
+                                      ,n,sampling,lmax_calc,extend,exitstatus)  bind(c&
+                                      , name="MakeMagGradGridDH")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeMagGradGridDH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: r0
         real(kind=c_double), value,intent(in) :: a
         real(kind=c_double), value,intent(in) :: f
@@ -1844,17 +1722,17 @@
                                    ,lmax_calc=lmax_calc,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeMagGradGridDH
 
-    subroutine cMakeGeoidGrid(geoid,geoid_d0,geoid_d1,cilm,cilm_d,lmax,r0pot,GM,PotRef&
-                                   ,omega,r,gridtype,order,nlat,nlong,interval,lmax_calc&
-                                   ,a,f,extend,exitstatus)  bind(c, name="MakeGeoidGrid")
+    subroutine cMakeGeoidGrid(geoid,geoid_d0,geoid_d1,cilm,cilm_dim,lmax,r0pot,GM&
+                                   ,PotRef,omega,r,gridtype,order,nlat,nlong,interval&
+                                   ,lmax_calc,a,f,extend,exitstatus)  bind(c, name="MakeGeoidGrid")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGeoidGrid
         implicit none
         integer(kind=c_int), value,intent(in) :: geoid_d0
         integer(kind=c_int), value,intent(in) :: geoid_d1
         real(kind=c_double), dimension(geoid_d0,geoid_d1),intent(out) :: geoid
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: r0pot
         real(kind=c_double), value,intent(in) :: GM
         real(kind=c_double), value,intent(in) :: r
@@ -1876,9 +1754,9 @@
                                 ,a=a,f=f,extend=extend,exitstatus=exitstatus)
     end subroutine cMakeGeoidGrid
 
-    subroutine cCilmPlus(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass,d,rho&
-                             ,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1,n,dref&
-                             ,exitstatus)  bind(c, name="CilmPlus")
+    subroutine cCilmPlus(cilm,cilm_dim,gridin,gridin_d0,gridin_d1,lmax,nmax,mass,d&
+                             ,rho,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1,n&
+                             ,dref,exitstatus)  bind(c, name="CilmPlus")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmPlus
         implicit none
@@ -1895,8 +1773,8 @@
         integer(kind=c_int), value,intent(in) :: plx_d1
         real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
         real(kind=c_double), optional,intent(in) :: dref
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         real(kind=c_double), intent(out) :: d
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: nmax
@@ -1907,8 +1785,8 @@
                           ,n=n,dref=dref,exitstatus=exitstatus)
     end subroutine cCilmPlus
 
-    subroutine cCilmMinus(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass,d&
-                              ,rho,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1&
+    subroutine cCilmMinus(cilm,cilm_dim,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
+                              ,d,rho,gridtype,w,w_d0,zero,zero_d0,plx,plx_d0,plx_d1&
                               ,n,dref,exitstatus)  bind(c, name="CilmMinus")
         use, intrinsic :: iso_c_binding
         use shtools, only: CilmMinus
@@ -1926,8 +1804,8 @@
         integer(kind=c_int), value,intent(in) :: plx_d1
         real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
         real(kind=c_double), optional,intent(in) :: dref
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         real(kind=c_double), intent(out) :: d
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: nmax
@@ -1938,7 +1816,7 @@
                            ,n=n,dref=dref,exitstatus=exitstatus)
     end subroutine cCilmMinus
 
-    subroutine cCilmPlusRhoH(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
+    subroutine cCilmPlusRhoH(cilm,cilm_dim,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
                                  ,d,rho,rho_d0,rho_d1,gridtype,w,w_d0,zero,zero_d0&
                                  ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="CilmPlusRhoH")
         use, intrinsic :: iso_c_binding
@@ -1959,8 +1837,8 @@
         integer(kind=c_int), value,intent(in) :: plx_d1
         real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
         real(kind=c_double), optional,intent(in) :: dref
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         real(kind=c_double), intent(out) :: d
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: nmax
@@ -1971,7 +1849,7 @@
                               ,plx=plx,n=n,dref=dref,exitstatus=exitstatus)
     end subroutine cCilmPlusRhoH
 
-    subroutine cCilmMinusRhoH(cilm,cilm_d,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
+    subroutine cCilmMinusRhoH(cilm,cilm_dim,gridin,gridin_d0,gridin_d1,lmax,nmax,mass&
                                   ,d,rho,rho_d0,rho_d1,gridtype,w,w_d0,zero,zero_d0&
                                   ,plx,plx_d0,plx_d1,n,dref,exitstatus)  bind(c, name="CilmMinusRhoH")
         use, intrinsic :: iso_c_binding
@@ -1992,8 +1870,8 @@
         integer(kind=c_int), value,intent(in) :: plx_d1
         real(kind=c_double), optional,dimension(plx_d0,plx_d1),intent(in) :: plx
         real(kind=c_double), optional,intent(in) :: dref
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         real(kind=c_double), intent(out) :: d
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: nmax
@@ -2004,15 +1882,15 @@
                                ,plx=plx,n=n,dref=dref,exitstatus=exitstatus)
     end subroutine cCilmMinusRhoH
 
-    subroutine cBAtoHilm(cilm,cilm_d,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0,gridglq_d1&
+    subroutine cBAtoHilm(cilm,cilm_dim,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0,gridglq_d1&
                              ,lmax,nmax,mass,r0,rho,gridtype,w,w_d0,plx,plx_d0,plx_d1&
                              ,zero,zero_d0,filter_type,filter_deg,lmax_calc,exitstatus)  bind(c&
                              , name="BAtoHilm")
         use, intrinsic :: iso_c_binding
         use shtools, only: BAtoHilm
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: ba_d0
         integer(kind=c_int), value,intent(in) :: ba_d1
         integer(kind=c_int), value,intent(in) :: ba_d2
@@ -2042,15 +1920,15 @@
                           ,exitstatus=exitstatus)
     end subroutine cBAtoHilm
 
-    subroutine cBAtoHilmRhoH(cilm,cilm_d,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0,gridglq_d1&
-                                 ,lmax,nmax,mass,r0,rho,rho_d0,rho_d1,gridtype,w,w_d0&
-                                 ,plx,plx_d0,plx_d1,zero,zero_d0,filter_type,filter_deg&
-                                 ,lmax_calc,exitstatus)  bind(c, name="BAtoHilmRhoH")
+    subroutine cBAtoHilmRhoH(cilm,cilm_dim,ba,ba_d0,ba_d1,ba_d2,gridglq,gridglq_d0&
+                                 ,gridglq_d1,lmax,nmax,mass,r0,rho,rho_d0,rho_d1,gridtype&
+                                 ,w,w_d0,plx,plx_d0,plx_d1,zero,zero_d0,filter_type&
+                                 ,filter_deg,lmax_calc,exitstatus)  bind(c, name="BAtoHilmRhoH")
         use, intrinsic :: iso_c_binding
         use shtools, only: BAtoHilmRhoH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(out) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(out) :: cilm
         integer(kind=c_int), value,intent(in) :: ba_d0
         integer(kind=c_int), value,intent(in) :: ba_d1
         integer(kind=c_int), value,intent(in) :: ba_d2
@@ -2119,7 +1997,7 @@
         cNormalGravity=NormalGravity(geocentric_lat,gm,omega,a,b)
     end function cNormalGravity
 
-    subroutine cMakeMagGridDH(cilm,cilm_d,lmax,r0,a,f,rad_grid,rad_grid_d0,rad_grid_d1&
+    subroutine cMakeMagGridDH(cilm,cilm_dim,lmax,r0,a,f,rad_grid,rad_grid_d0,rad_grid_d1&
                                   ,theta_grid,theta_grid_d0,theta_grid_d1,phi_grid&
                                   ,phi_grid_d0,phi_grid_d1,total_grid,total_grid_d0&
                                   ,total_grid_d1,n,sampling,lmax_calc,pot_grid,pot_grid_d0&
@@ -2127,8 +2005,8 @@
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeMagGridDH
         implicit none
-        integer(kind=c_int), value,intent(in) :: cilm_d
-        real(kind=c_double), dimension(2,cilm_d,cilm_d),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: r0
         real(kind=c_double), value,intent(in) :: a
         real(kind=c_double), value,intent(in) :: f

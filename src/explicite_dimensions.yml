@@ -1,5 +1,212 @@
-SHCilmToVector:
+PlmBar:
     existing_dim : ['lmax']
     args:
-        cilm: ['2', 'lmax+1', 'lmax+1']
+        p: ['(lmax+1)*(lmax+2)/2']
+        
+PlmBar_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        dp1: ['(lmax+1)*(lmax+2)/2']
+       
+PlBar:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        
+PlBar_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        dp1: ['lmax+1']
+        
+PlmON:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        
+PlmON_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        dp1: ['(lmax+1)*(lmax+2)/2']
+
+PlON:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        
+PlON_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        dp1: ['lmax+1']
+        
+PlmSchmidt:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        
+PlmSchmidt_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        dp1: ['(lmax+1)*(lmax+2)/2']
+        
+PlSchmidt:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        
+PlSchmidt_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        dp1: ['lmax+1']
+        
+PLegendreA:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        
+PLegendreA_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['(lmax+1)*(lmax+2)/2']
+        dp1: ['(lmax+1)*(lmax+2)/2']
+        
+PLegendre:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        
+PLegendre_d1:
+    existing_dim : ['lmax']
+    args:
+        p: ['lmax+1']
+        dp1: ['lmax+1']
+        
+SHGLQ:
+    existing_dim : ['lmax']
+    args:
+        zero: ['lmax+1']
+        w: ['lmax+1']
+        plx: ['lmax+1', '(lmax+1)*(lmax+2)/2']
+        
+SHExpandGLQ:
+    existing_dim : ['lmax']
+    args:
+        gridglq: ['lmax+1', '2*lmax+1']
+        w: ['lmax+1']
+        plx: ['lmax+1', '(lmax+1)*(lmax+2)/2']
+        zero: ['lmax+1']
+         
+MakeGridGLQ:
+    existing_dim : ['lmax']
+    args:
+        plx: ['lmax+1', '(lmax+1)*(lmax+2)/2']
+        zero: ['lmax+1']
+        
+SHExpandGLQC:
+    existing_dim : ['lmax']
+    args:
+        gridglq: ['lmax+1', '2*lmax+1']
+        w: ['lmax+1']
+        plx: ['lmax+1', '(lmax+1)*(lmax+2)/2']
+        zero: ['lmax+1']
+        
+MakeGridGLQC:
+    existing_dim : ['lmax']
+    args:
+        plx: ['lmax+1', '(lmax+1)*(lmax+2)/2']
+        zero: ['lmax+1']
+        
+SHExpandLSQ:
+    existing_dim : ['nmax','lmax']
+    args:
+        d: ['nmax']
+        lat: ['nmax']
+        lon: ['nmax']
+        weights: ['nmax']
+
+MakeGrid2d:
+    new_dim : ['nlat','nlon']
+    existing_dim : ['lmax']
+    args:
+        grid: ['nlat','nlon']
+     
+SHMultiply:
+    existing_dim : ['lmax1','lmax2']
+    args:
+        shout: ['2', 'lmax1+lmax2+1', 'lmax1+lmax2+1']
+        sh1: ['2', 'lmax1+1', 'lmax1+1']
+        sh2: ['2', 'lmax2+1', 'lmax2+1']
+        
+SHRead:
+    new_dim : ['cilm_dim']
+    args:
+        cilm: ['2', 'cilm_dim', 'cilm_dim']
+        error: ['2', 'cilm_dim', 'cilm_dim']
+        
+SHRead2:
+    new_dim : ['cilm_dim']
+    args:
+        cilm: ['2', 'cilm_dim', 'cilm_dim']
+        error: ['2', 'cilm_dim', 'cilm_dim']
+        
+SHReadJPL:
+    new_dim : ['cilm_dim']
+    args:
+        cilm: ['2', 'cilm_dim', 'cilm_dim']
+        error: ['2', 'cilm_dim', 'cilm_dim']
+        
+SHCilmToVector:      
+    existing_dim : ['lmax']
+    args:
         vector: ['(lmax+1)**2']
+        
+SHVectorToCilm:
+    existing_dim : ['lmax']
+    args:
+        vector: ['(lmax+1)**2']
+        
+# SHCindexToCilm SHCilmToCindex
+# make degmax not optional
+# use it as dimension
+
+SHrtoc:
+    new_dim : ['cilm_dim']
+    args:
+        rcilm: ['2', 'cilm_dim', 'cilm_dim']
+        ccilm: ['2', 'cilm_dim', 'cilm_dim']
+        
+SHctor:
+    new_dim : ['cilm_dim']
+    args:
+        rcilm: ['2', 'cilm_dim', 'cilm_dim']
+        ccilm: ['2', 'cilm_dim', 'cilm_dim']
+    
+djpi2:
+    existing_dim : ['lmax']
+    args:
+        dj: [ 'lmax+1', 'lmax+1', 'lmax+1']
+        
+SHRotateCoef:
+    existing_dim : ['lmax']
+    args:
+        coef: ['2', '(lmax+1)*(lmax+2)/2']
+        rcof: ['2', '(lmax+1)*(lmax+2)/2']
+        dj: [ 'lmax+1', 'lmax+1', 'lmax+1']
+        
+SHRotateRealCoef:
+    existing_dim : ['lmax']
+    args:
+        cilmrot: ['2', 'lmax+1', 'lmax+1']
+        cilm: ['2', 'lmax+1', 'lmax+1']
+        dj: [ 'lmax+1', 'lmax+1', 'lmax+1']
+        x: ['3']
+
+
+        
+       
+

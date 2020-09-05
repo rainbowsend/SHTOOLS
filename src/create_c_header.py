@@ -48,6 +48,8 @@ def main():
     
 def create_signature(subroutine):
     args = []
+    
+    index_arg_optional_arrays = [];
     for arg in subroutine['args']:
         var = subroutine['vars'][arg]
                 
@@ -55,6 +57,16 @@ def create_signature(subroutine):
         carg = TYPEMAP[var['typespec']] + BYVALUE[is_called_by_value] + arg
         if 'intent' in var and 'in' in var['intent']:
             carg = 'const ' + carg
+        if 'attrspec' in var and 'optional' in var['attrspec'] \
+            and not is_called_by_value:
+                carg = carg + ' = nullptr'
+                
+                for a in subroutine['args']:
+                    if arg in subroutine['args'] and a != arg:
+                        index_arg_optional_arrays.append(a)
+        elif arg in index_arg_optional_arrays:
+            carg = carg + ' = 0'
+
         args.append(carg)
     return ', '.join(args) 
         

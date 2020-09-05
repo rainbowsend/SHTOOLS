@@ -423,62 +423,62 @@ module SHTOOLS
             integer, intent(out), optional :: exitstatus
         end subroutine SHRotateRealCoef
 
-        function SHPowerL(c, l)
+        function SHPowerL(cilm, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHPowerL
-            real(dp), intent(in) :: c(:,:,:)
-            integer, intent(in) :: l
+            real(dp), intent(in) :: cilm(:,:,:)
+            integer, intent(in) :: lmax
         end function SHPowerL
 
-        function SHPowerDensityL(c, l)
+        function SHPowerDensityL(cilm, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHPowerDensityL
-            real(dp), intent(in) :: c(:,:,:)
-            integer, intent(in) :: l
+            real(dp), intent(in) :: cilm(:,:,:)
+            integer, intent(in) :: lmax
         end function SHPowerDensityL
 
-        function SHCrossPowerL(c1, c2, l)
+        function SHCrossPowerL(cilm1, cilm2, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHCrossPowerL
-            real(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
-            integer, intent(in) :: l
+            real(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
+            integer, intent(in) :: lmax
         end function SHCrossPowerL
 
-        function SHCrossPowerDensityL(c1, c2, l)
+        function SHCrossPowerDensityL(cilm1, cilm2, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHCrossPowerDensityL
-            real(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
-            integer, intent(in) :: l
+            real(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
+            integer, intent(in) :: lmax
         end function SHCrossPowerDensityL
 
-        subroutine SHPowerSpectrum(c, lmax, spectra, exitstatus)
+        subroutine SHPowerSpectrum(cilm, lmax, spectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            real(dp), intent(in) :: c(:,:,:)
+            real(dp), intent(in) :: cilm(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: spectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHPowerSpectrum
 
-        subroutine SHPowerSpectrumDensity(c, lmax, spectra, exitstatus)
+        subroutine SHPowerSpectrumDensity(cilm, lmax, spectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            real(dp), intent(in) :: c(:,:,:)
+            real(dp), intent(in) :: cilm(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: spectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHPowerSpectrumDensity
 
-        subroutine SHCrossPowerSpectrum(c1, c2, lmax, cspectra, exitstatus)
+        subroutine SHCrossPowerSpectrum(cilm1, cilm2, lmax, cspectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            real(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
+            real(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: cspectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHCrossPowerSpectrum
 
-        subroutine SHCrossPowerSpectrumDensity(c1, c2, lmax, cspectra, &
+        subroutine SHCrossPowerSpectrumDensity(cilm1, cilm2, lmax, cspectra, &
                                                exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            real(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
+            real(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: cspectra(:)
             integer, intent(out), optional :: exitstatus
@@ -501,85 +501,85 @@ module SHTOOLS
             integer, intent(in) :: l_conf
         end function SHConfidence
 
-        function SHPowerLC(c, l)
+        function SHPowerLC(cilm, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHPowerLC
-            complex(dp), intent(in) :: c(:,:,:)
-            integer, intent(in) :: l
+            complex(dp), intent(in) :: cilm(:,:,:)
+            integer, intent(in) :: lmax
         end function SHPowerLC
 
-        function SHPowerDensityLC(c, l)
+        function SHPowerDensityLC(cilm, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp) :: SHPowerDensityLC
-            complex(dp), intent(in) :: c(:,:,:)
-            integer, intent(in) :: l
+            complex(dp), intent(in) :: cilm(:,:,:)
+            integer, intent(in) :: lmax
         end function SHPowerDensityLC
 
-        function SHCrossPowerLC(c1, c2, l)
+        function SHCrossPowerLC(cilm1, cilm2, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             complex(dp) :: SHCrossPowerLC
-            complex(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
-            integer, intent(in) :: l
+            complex(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
+            integer, intent(in) :: lmax
         end function SHCrossPowerLC
 
-        function SHCrossPowerDensityLC(c1, c2, l)
+        function SHCrossPowerDensityLC(cilm1, cilm2, lmax)
             integer, parameter :: dp = selected_real_kind(p=15)
             complex(dp) :: SHCrossPowerDensityLC
-            complex(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
-            integer, intent(in) :: l
+            complex(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
+            integer, intent(in) :: lmax
         end function SHCrossPowerDensityLC
 
-        subroutine SHPowerSpectrumC(c, lmax, spectra, exitstatus)
+        subroutine SHPowerSpectrumC(cilm, lmax, spectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            complex(dp), intent(in) :: c(:,:,:)
+            complex(dp), intent(in) :: cilm(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: spectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHPowerSpectrumC
 
-        subroutine SHPowerSpectrumDensityC(c, lmax, spectra, exitstatus)
+        subroutine SHPowerSpectrumDensityC(cilm, lmax, spectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            complex(dp), intent(in) :: c(:,:,:)
+            complex(dp), intent(in) :: cilm(:,:,:)
             integer, intent(in) :: lmax
             real(dp), intent(out) :: spectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHPowerSpectrumDensityC
 
-        subroutine SHCrossPowerSpectrumC(c1, c2, lmax, cspectra, exitstatus)
+        subroutine SHCrossPowerSpectrumC(cilm1, cilm2, lmax, cspectra, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            complex(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
+            complex(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
             integer, intent(in) :: lmax
             complex(dp), intent(out) :: cspectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHCrossPowerSpectrumC
 
-        subroutine SHCrossPowerSpectrumDensityC(c1, c2, lmax, cspectra,&
+        subroutine SHCrossPowerSpectrumDensityC(cilm1, cilm2, lmax, cspectra,&
                                                 exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
-            complex(dp), intent(in) :: c1(:,:,:), c2(:,:,:)
+            complex(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:)
             integer, intent(in) :: lmax
             complex(dp), intent(out) :: cspectra(:)
             integer, intent(out), optional :: exitstatus
         end subroutine SHCrossPowerSpectrumDensityC
 
-        subroutine SHMultiTaperSE(mtse, sd, sh, lmax, tapers, taper_order, &
+        subroutine SHMultiTaperSE(mtse, sd, cilm, lmax, tapers, taper_order, &
                                   lmaxt, k, alpha, lat, lon, taper_wt, norm, &
                                   csphase, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp), intent(out) :: mtse(:), sd(:)
-            real(dp), intent(in) :: sh(:,:,:), tapers(:,:)
+            real(dp), intent(in) :: cilm(:,:,:), tapers(:,:)
             integer, intent(in) :: lmax, lmaxt, k, taper_order(:)
             real(dp), intent(in), optional :: alpha(:), lat, lon, taper_wt(:)
             integer, intent(in), optional :: csphase, norm
             integer, intent(out), optional :: exitstatus
         end subroutine SHMultiTaperSE
 
-        subroutine SHMultiTaperCSE(mtse, sd, sh1, lmax1, sh2, lmax2, tapers, &
+        subroutine SHMultiTaperCSE(mtse, sd, cilm1, lmax1, cilm2, lmax2, tapers, &
                                    taper_order, lmaxt, k, alpha, lat, lon, &
                                    taper_wt, norm, csphase, exitstatus)
             integer, parameter :: dp = selected_real_kind(p=15)
             real(dp), intent(out) :: mtse(:), sd(:)
-            real(dp), intent(in) :: sh1(:,:,:), sh2(:,:,:), tapers(:,:)
+            real(dp), intent(in) :: cilm1(:,:,:), cilm2(:,:,:), tapers(:,:)
             integer, intent(in) :: lmax1, lmax2, lmaxt, k, taper_order(:)
             real(dp), intent(in), optional :: alpha(:), lat, lon, taper_wt(:)
             integer, intent(in), optional :: csphase, norm

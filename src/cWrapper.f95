@@ -431,18 +431,19 @@
                              ,weights=weights,exitstatus=exitstatus)
     end subroutine cSHExpandLSQ
 
-    subroutine cMakeGrid2d(grid,nlon,cilm,cilm_dim,lmax,interval,nlat,nlong,norm,csphase&
-                               ,f,a,north,south,east,west,dealloc,exitstatus)  bind(c&
+    subroutine cMakeGrid2d(grid,grid_d0,grid_d1,cilm,cilm_dim,lmax,interval,nlat,nlong&
+                               ,norm,csphase,f,a,north,south,east,west,dealloc,exitstatus)  bind(c&
                                , name="MakeGrid2d")
         use, intrinsic :: iso_c_binding
         use shtools, only: MakeGrid2d
         implicit none
-        integer(kind=c_int), value,intent(in) :: nlon
-        integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cilm_dim
         real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         real(kind=c_double), value,intent(in) :: interval
-        real(kind=c_double), dimension(nlat,nlon),intent(out) :: grid
+        integer(kind=c_int), value,intent(in) :: grid_d0
+        integer(kind=c_int), value,intent(in) :: grid_d1
+        real(kind=c_double), dimension(grid_d0,grid_d1),intent(out) :: grid
+        integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), intent(out) :: nlat
         integer(kind=c_int), intent(out) :: nlong
         integer(kind=c_int), optional,intent(in) :: norm
@@ -700,138 +701,113 @@
         call SHRotateRealCoef(cilmrot,cilm,lmax,x,dj,exitstatus=exitstatus)
     end subroutine cSHRotateRealCoef
 
-    function cSHPowerL(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerL")
+    function cSHPowerL(cilm,cilm_dim,lmax)  bind(c, name="SHPowerL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerL
         implicit none
         real(kind=c_double) :: cSHPowerL
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        real(kind=c_double), dimension(c_d0,c_d1,c_d2),intent(in) :: c
-        integer(kind=c_int), value,intent(in) :: l
-        cSHPowerL=SHPowerL(c,l)
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHPowerL=SHPowerL(cilm,lmax)
     end function cSHPowerL
 
-    function cSHPowerDensityL(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerDensityL")
+    function cSHPowerDensityL(cilm,cilm_dim,lmax)  bind(c, name="SHPowerDensityL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerDensityL
         implicit none
         real(kind=c_double) :: cSHPowerDensityL
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        real(kind=c_double), dimension(c_d0,c_d1,c_d2),intent(in) :: c
-        integer(kind=c_int), value,intent(in) :: l
-        cSHPowerDensityL=SHPowerDensityL(c,l)
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHPowerDensityL=SHPowerDensityL(cilm,lmax)
     end function cSHPowerDensityL
 
-    function cSHCrossPowerL(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c, name="SHCrossPowerL")
+    function cSHCrossPowerL(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax)  bind(c, name="SHCrossPowerL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerL
         implicit none
         real(kind=c_double) :: cSHCrossPowerL
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        real(kind=c_double), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        real(kind=c_double), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
-        integer(kind=c_int), value,intent(in) :: l
-        cSHCrossPowerL=SHCrossPowerL(c1,c2,l)
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        real(kind=c_double), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        real(kind=c_double), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHCrossPowerL=SHCrossPowerL(cilm1,cilm2,lmax)
     end function cSHCrossPowerL
 
-    function cSHCrossPowerDensityL(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                                     , name="SHCrossPowerDensityL")
+    function cSHCrossPowerDensityL(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax)  bind(c, name="SHCrossPowerDensityL")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerDensityL
         implicit none
         real(kind=c_double) :: cSHCrossPowerDensityL
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        real(kind=c_double), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        real(kind=c_double), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
-        integer(kind=c_int), value,intent(in) :: l
-        cSHCrossPowerDensityL=SHCrossPowerDensityL(c1,c2,l)
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        real(kind=c_double), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        real(kind=c_double), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHCrossPowerDensityL=SHCrossPowerDensityL(cilm1,cilm2,lmax)
     end function cSHCrossPowerDensityL
 
-    subroutine cSHPowerSpectrum(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                 , name="SHPowerSpectrum")
+    subroutine cSHPowerSpectrum(cilm,cilm_dim,lmax,spectra,spectra_d0,exitstatus)  bind(c&
+                                    , name="SHPowerSpectrum")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrum
         implicit none
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        real(kind=c_double), dimension(c_d0,c_d1,c_d2),intent(in) :: c
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: spectra_d0
         real(kind=c_double), dimension(spectra_d0),intent(out) :: spectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHPowerSpectrum(c,lmax,spectra,exitstatus=exitstatus)
+        call SHPowerSpectrum(cilm,lmax,spectra,exitstatus=exitstatus)
     end subroutine cSHPowerSpectrum
 
-    subroutine cSHPowerSpectrumDensity(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                        , name="SHPowerSpectrumDensity")
+    subroutine cSHPowerSpectrumDensity(cilm,cilm_dim,lmax,spectra,spectra_d0,exitstatus)  bind(c&
+                                           , name="SHPowerSpectrumDensity")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumDensity
         implicit none
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        real(kind=c_double), dimension(c_d0,c_d1,c_d2),intent(in) :: c
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: spectra_d0
         real(kind=c_double), dimension(spectra_d0),intent(out) :: spectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHPowerSpectrumDensity(c,lmax,spectra,exitstatus=exitstatus)
+        call SHPowerSpectrumDensity(cilm,lmax,spectra,exitstatus=exitstatus)
     end subroutine cSHPowerSpectrumDensity
 
-    subroutine cSHCrossPowerSpectrum(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,lmax&
-                                       ,cspectra,cspectra_d0,exitstatus)  bind(c, name="SHCrossPowerSpectrum")
+    subroutine cSHCrossPowerSpectrum(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax,cspectra&
+                                          ,cspectra_d0,exitstatus)  bind(c, name="SHCrossPowerSpectrum")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrum
         implicit none
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        real(kind=c_double), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        real(kind=c_double), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        real(kind=c_double), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        real(kind=c_double), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cspectra_d0
         real(kind=c_double), dimension(cspectra_d0),intent(out) :: cspectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHCrossPowerSpectrum(c1,c2,lmax,cspectra,exitstatus=exitstatus)
+        call SHCrossPowerSpectrum(cilm1,cilm2,lmax,cspectra,exitstatus=exitstatus)
     end subroutine cSHCrossPowerSpectrum
 
-    subroutine cSHCrossPowerSpectrumDensity(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2&
-                                              ,lmax,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                              , name="SHCrossPowerSpectrumDensity")
+    subroutine cSHCrossPowerSpectrumDensity(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax,cspectra&
+                                                 ,cspectra_d0,exitstatus)  bind(c&
+                                                 , name="SHCrossPowerSpectrumDensity")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumDensity
         implicit none
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        real(kind=c_double), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        real(kind=c_double), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        real(kind=c_double), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        real(kind=c_double), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cspectra_d0
         real(kind=c_double), dimension(cspectra_d0),intent(out) :: cspectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHCrossPowerSpectrumDensity(c1,c2,lmax,cspectra,exitstatus=exitstatus)
+        call SHCrossPowerSpectrumDensity(cilm1,cilm2,lmax,cspectra,exitstatus=exitstatus)
     end subroutine cSHCrossPowerSpectrumDensity
 
     subroutine cSHAdmitCorr(G,G_d0,G_d1,G_d2,T,T_d0,T_d1,T_d2,lmax,admit,admit_d0&
@@ -869,146 +845,120 @@
         cSHConfidence=SHConfidence(l_conf,r)
     end function cSHConfidence
 
-    function cSHPowerLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerLC")
+    function cSHPowerLC(cilm,cilm_dim,lmax)  bind(c, name="SHPowerLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerLC
         implicit none
         real(kind=c_double) :: cSHPowerLC
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        complex(kind=c_double_complex), dimension(c_d0,c_d1,c_d2),intent(in) :: c
-        integer(kind=c_int), value,intent(in) :: l
-        cSHPowerLC=SHPowerLC(c,l)
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHPowerLC=SHPowerLC(cilm,lmax)
     end function cSHPowerLC
 
-    function cSHPowerDensityLC(c,c_d0,c_d1,c_d2,l)  bind(c, name="SHPowerDensityLC")
+    function cSHPowerDensityLC(cilm,cilm_dim,lmax)  bind(c, name="SHPowerDensityLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerDensityLC
         implicit none
         real(kind=c_double) :: cSHPowerDensityLC
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        complex(kind=c_double_complex), dimension(c_d0,c_d1,c_d2),intent(in) :: c
-        integer(kind=c_int), value,intent(in) :: l
-        cSHPowerDensityLC=SHPowerDensityLC(c,l)
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHPowerDensityLC=SHPowerDensityLC(cilm,lmax)
     end function cSHPowerDensityLC
 
-    function cSHCrossPowerLC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                               , name="SHCrossPowerLC")
+    function cSHCrossPowerLC(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax)  bind(c, name="SHCrossPowerLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerLC
         implicit none
         complex(kind=c_double_complex) :: cSHCrossPowerLC
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        complex(kind=c_double_complex), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        complex(kind=c_double_complex), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
-        integer(kind=c_int), value,intent(in) :: l
-        cSHCrossPowerLC=SHCrossPowerLC(c1,c2,l)
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        complex(kind=c_double_complex), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        complex(kind=c_double_complex), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHCrossPowerLC=SHCrossPowerLC(cilm1,cilm2,lmax)
     end function cSHCrossPowerLC
 
-    function cSHCrossPowerDensityLC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,l)  bind(c&
-                                      , name="SHCrossPowerDensityLC")
+    function cSHCrossPowerDensityLC(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax)  bind(c&
+                                         , name="SHCrossPowerDensityLC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerDensityLC
         implicit none
         complex(kind=c_double_complex) :: cSHCrossPowerDensityLC
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        complex(kind=c_double_complex), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        complex(kind=c_double_complex), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
-        integer(kind=c_int), value,intent(in) :: l
-        cSHCrossPowerDensityLC=SHCrossPowerDensityLC(c1,c2,l)
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        complex(kind=c_double_complex), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        complex(kind=c_double_complex), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
+        integer(kind=c_int), value,intent(in) :: lmax
+        cSHCrossPowerDensityLC=SHCrossPowerDensityLC(cilm1,cilm2,lmax)
     end function cSHCrossPowerDensityLC
 
-    subroutine cSHPowerSpectrumC(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                  , name="SHPowerSpectrumC")
+    subroutine cSHPowerSpectrumC(cilm,cilm_dim,lmax,spectra,spectra_d0,exitstatus)  bind(c&
+                                     , name="SHPowerSpectrumC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumC
         implicit none
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        complex(kind=c_double_complex), dimension(c_d0,c_d1,c_d2),intent(in) :: c
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: spectra_d0
         real(kind=c_double), dimension(spectra_d0),intent(out) :: spectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHPowerSpectrumC(c,lmax,spectra,exitstatus=exitstatus)
+        call SHPowerSpectrumC(cilm,lmax,spectra,exitstatus=exitstatus)
     end subroutine cSHPowerSpectrumC
 
-    subroutine cSHPowerSpectrumDensityC(c,c_d0,c_d1,c_d2,lmax,spectra,spectra_d0,exitstatus)  bind(c&
-                                         , name="SHPowerSpectrumDensityC")
+    subroutine cSHPowerSpectrumDensityC(cilm,cilm_dim,lmax,spectra,spectra_d0,exitstatus)  bind(c&
+                                            , name="SHPowerSpectrumDensityC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHPowerSpectrumDensityC
         implicit none
-        integer(kind=c_int), value,intent(in) :: c_d0
-        integer(kind=c_int), value,intent(in) :: c_d1
-        integer(kind=c_int), value,intent(in) :: c_d2
-        complex(kind=c_double_complex), dimension(c_d0,c_d1,c_d2),intent(in) :: c
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        complex(kind=c_double_complex), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: spectra_d0
         real(kind=c_double), dimension(spectra_d0),intent(out) :: spectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHPowerSpectrumDensityC(c,lmax,spectra,exitstatus=exitstatus)
+        call SHPowerSpectrumDensityC(cilm,lmax,spectra,exitstatus=exitstatus)
     end subroutine cSHPowerSpectrumDensityC
 
-    subroutine cSHCrossPowerSpectrumC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2,lmax&
-                                        ,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                        , name="SHCrossPowerSpectrumC")
+    subroutine cSHCrossPowerSpectrumC(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax,cspectra&
+                                           ,cspectra_d0,exitstatus)  bind(c, name="SHCrossPowerSpectrumC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumC
         implicit none
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        complex(kind=c_double_complex), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        complex(kind=c_double_complex), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        complex(kind=c_double_complex), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        complex(kind=c_double_complex), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cspectra_d0
         complex(kind=c_double_complex), dimension(cspectra_d0),intent(out) :: cspectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHCrossPowerSpectrumC(c1,c2,lmax,cspectra,exitstatus=exitstatus)
+        call SHCrossPowerSpectrumC(cilm1,cilm2,lmax,cspectra,exitstatus=exitstatus)
     end subroutine cSHCrossPowerSpectrumC
 
-    subroutine cSHCrossPowerSpectrumDensityC(c1,c1_d0,c1_d1,c1_d2,c2,c2_d0,c2_d1,c2_d2&
-                                               ,lmax,cspectra,cspectra_d0,exitstatus)  bind(c&
-                                               , name="SHCrossPowerSpectrumDensityC")
+    subroutine cSHCrossPowerSpectrumDensityC(cilm1,cilm1_dim,cilm2,cilm2_dim,lmax&
+                                                  ,cspectra,cspectra_d0,exitstatus)  bind(c&
+                                                  , name="SHCrossPowerSpectrumDensityC")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHCrossPowerSpectrumDensityC
         implicit none
-        integer(kind=c_int), value,intent(in) :: c1_d0
-        integer(kind=c_int), value,intent(in) :: c1_d1
-        integer(kind=c_int), value,intent(in) :: c1_d2
-        complex(kind=c_double_complex), dimension(c1_d0,c1_d1,c1_d2),intent(in) :: c1
-        integer(kind=c_int), value,intent(in) :: c2_d0
-        integer(kind=c_int), value,intent(in) :: c2_d1
-        integer(kind=c_int), value,intent(in) :: c2_d2
-        complex(kind=c_double_complex), dimension(c2_d0,c2_d1,c2_d2),intent(in) :: c2
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        complex(kind=c_double_complex), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        complex(kind=c_double_complex), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
         integer(kind=c_int), value,intent(in) :: lmax
         integer(kind=c_int), value,intent(in) :: cspectra_d0
         complex(kind=c_double_complex), dimension(cspectra_d0),intent(out) :: cspectra
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHCrossPowerSpectrumDensityC(c1,c2,lmax,cspectra,exitstatus=exitstatus)
+        call SHCrossPowerSpectrumDensityC(cilm1,cilm2,lmax,cspectra,exitstatus=exitstatus)
     end subroutine cSHCrossPowerSpectrumDensityC
 
-    subroutine cSHMultiTaperSE(mtse,mtse_d0,sd,sd_d0,sh,sh_d0,sh_d1,sh_d2,lmax,tapers&
-                                   ,tapers_d0,tapers_d1,taper_order,taper_order_d0&
-                                   ,lmaxt,k,alpha,alpha_d0,lat,lon,taper_wt,taper_wt_d0&
-                                   ,norm,csphase,exitstatus)  bind(c, name="SHMultiTaperSE")
+    subroutine cSHMultiTaperSE(mtse,mtse_d0,sd,sd_d0,cilm,cilm_dim,lmax,tapers,tapers_d0&
+                                   ,tapers_d1,taper_order,taper_order_d0,lmaxt,k,alpha&
+                                   ,alpha_d0,lat,lon,taper_wt,taper_wt_d0,norm,csphase&
+                                   ,exitstatus)  bind(c, name="SHMultiTaperSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperSE
         implicit none
@@ -1016,10 +966,8 @@
         real(kind=c_double), dimension(mtse_d0),intent(out) :: mtse
         integer(kind=c_int), value,intent(in) :: sd_d0
         real(kind=c_double), dimension(sd_d0),intent(out) :: sd
-        integer(kind=c_int), value,intent(in) :: sh_d0
-        integer(kind=c_int), value,intent(in) :: sh_d1
-        integer(kind=c_int), value,intent(in) :: sh_d2
-        real(kind=c_double), dimension(sh_d0,sh_d1,sh_d2),intent(in) :: sh
+        integer(kind=c_int), value,intent(in) :: cilm_dim
+        real(kind=c_double), dimension(2,cilm_dim,cilm_dim),intent(in) :: cilm
         integer(kind=c_int), value,intent(in) :: tapers_d0
         integer(kind=c_int), value,intent(in) :: tapers_d1
         real(kind=c_double), dimension(tapers_d0,tapers_d1),intent(in) :: tapers
@@ -1037,16 +985,16 @@
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHMultiTaperSE(mtse,sd,sh,lmax,tapers,taper_order,lmaxt,k,alpha=alpha&
+        call SHMultiTaperSE(mtse,sd,cilm,lmax,tapers,taper_order,lmaxt,k,alpha=alpha&
                                 ,lat=lat,lon=lon,taper_wt=taper_wt,norm=norm,csphase=csphase&
                                 ,exitstatus=exitstatus)
     end subroutine cSHMultiTaperSE
 
-    subroutine cSHMultiTaperCSE(mtse,mtse_d0,sd,sd_d0,sh1,sh1_d0,sh1_d1,sh1_d2,lmax1&
-                                    ,sh2,sh2_d0,sh2_d1,sh2_d2,lmax2,tapers,tapers_d0&
-                                    ,tapers_d1,taper_order,taper_order_d0,lmaxt,k&
-                                    ,alpha,alpha_d0,lat,lon,taper_wt,taper_wt_d0,norm&
-                                    ,csphase,exitstatus)  bind(c, name="SHMultiTaperCSE")
+    subroutine cSHMultiTaperCSE(mtse,mtse_d0,sd,sd_d0,cilm1,cilm1_dim,lmax1,cilm2&
+                                    ,cilm2_dim,lmax2,tapers,tapers_d0,tapers_d1,taper_order&
+                                    ,taper_order_d0,lmaxt,k,alpha,alpha_d0,lat,lon&
+                                    ,taper_wt,taper_wt_d0,norm,csphase,exitstatus)  bind(c&
+                                    , name="SHMultiTaperCSE")
         use, intrinsic :: iso_c_binding
         use shtools, only: SHMultiTaperCSE
         implicit none
@@ -1054,14 +1002,10 @@
         real(kind=c_double), dimension(mtse_d0),intent(out) :: mtse
         integer(kind=c_int), value,intent(in) :: sd_d0
         real(kind=c_double), dimension(sd_d0),intent(out) :: sd
-        integer(kind=c_int), value,intent(in) :: sh1_d0
-        integer(kind=c_int), value,intent(in) :: sh1_d1
-        integer(kind=c_int), value,intent(in) :: sh1_d2
-        real(kind=c_double), dimension(sh1_d0,sh1_d1,sh1_d2),intent(in) :: sh1
-        integer(kind=c_int), value,intent(in) :: sh2_d0
-        integer(kind=c_int), value,intent(in) :: sh2_d1
-        integer(kind=c_int), value,intent(in) :: sh2_d2
-        real(kind=c_double), dimension(sh2_d0,sh2_d1,sh2_d2),intent(in) :: sh2
+        integer(kind=c_int), value,intent(in) :: cilm1_dim
+        real(kind=c_double), dimension(2,cilm1_dim,cilm1_dim),intent(in) :: cilm1
+        integer(kind=c_int), value,intent(in) :: cilm2_dim
+        real(kind=c_double), dimension(2,cilm2_dim,cilm2_dim),intent(in) :: cilm2
         integer(kind=c_int), value,intent(in) :: tapers_d0
         integer(kind=c_int), value,intent(in) :: tapers_d1
         real(kind=c_double), dimension(tapers_d0,tapers_d1),intent(in) :: tapers
@@ -1080,7 +1024,7 @@
         integer(kind=c_int), optional,intent(in) :: csphase
         integer(kind=c_int), optional,intent(in) :: norm
         integer(kind=c_int), optional,intent(out) :: exitstatus
-        call SHMultiTaperCSE(mtse,sd,sh1,lmax1,sh2,lmax2,tapers,taper_order,lmaxt&
+        call SHMultiTaperCSE(mtse,sd,cilm1,lmax1,cilm2,lmax2,tapers,taper_order,lmaxt&
                                  ,k,alpha=alpha,lat=lat,lon=lon,taper_wt=taper_wt&
                                  ,norm=norm,csphase=csphase,exitstatus=exitstatus)
     end subroutine cSHMultiTaperCSE

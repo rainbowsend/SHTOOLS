@@ -252,12 +252,16 @@ def make_explicit(subroutine, varname, varattribs):
     argpos = subroutine['args'].index(varname) + 1 
     decpos = subroutine['sortvars'].index(varname) 
     
+    if subroutine['name']=='SHCrossPowerDensityLC':
+        print('')
+    
     if varattribs['typespec'] == 'character':
         dimname = '%s_d%d' % (varname, 1)
         varattribs['dimension'] = [dimname]
         insert_dim(subroutine,dimname,argpos,decpos)
-    elif varname=='cilm':
-        dimname = 'cilm_dim'
+    elif ('cilm' in varname or 'gilm' in varname or 'tilm'  in varname) \
+        and len(varattribs['dimension']) == 3:
+        dimname = varname+'_dim'
         varattribs['dimension'] = ['2', dimname, dimname]
         insert_dim(subroutine,dimname,argpos,decpos)
     else:

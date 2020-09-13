@@ -198,6 +198,9 @@ def modify_subroutine(subroutine, explicite_dim=None):
                    for dim in explicite_dim['existing_dim']:
                        idx = subroutine['sortvars'].index(dim)
                        subroutine['sortvars'].insert(0, subroutine['sortvars'].pop(idx))
+                       if 'optional' in subroutine['vars'][dim]['attrspec']:
+                           idx = subroutine['vars'][dim]['attrspec'].index('optional')
+                           subroutine['vars'][dim]['attrspec'].pop(idx)
                if 'new_dim' in explicite_dim:
                    for dim in explicite_dim['new_dim']:
                        if dim in varattribs['dimension']:
@@ -259,7 +262,7 @@ def make_explicit(subroutine, varname, varattribs):
         dimname = '%s_d%d' % (varname, 1)
         varattribs['dimension'] = [dimname]
         insert_dim(subroutine,dimname,argpos,decpos)
-    elif ('cilm' in varname or 'gilm' in varname or 'tilm'  in varname) \
+    elif ('cilm' in varname or 'gilm' in varname or 'tilm' or 'film'  in varname) \
         and len(varattribs['dimension']) == 3:
         dimname = varname+'_dim'
         varattribs['dimension'] = ['2', dimname, dimname]

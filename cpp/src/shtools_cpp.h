@@ -85,7 +85,7 @@ constexpr OutputIt sh_cindex_to_cilm( const InputIt cindex_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  SHCindexToCilm(&*cindex_first, 2, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
+  SHCindexToCilm(&*cindex_first, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -102,7 +102,7 @@ constexpr OutputIt sh_cilm_to_cindex( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  SHCilmToCindex( &*cilm_first, cilm_dim, &*cindex_first, 2, n, degmax, &exitstatus);
+  SHCilmToCindex( &*cilm_first, cilm_dim, &*cindex_first, n, degmax, &exitstatus);
   
   return cindex_first;
 }
@@ -119,7 +119,7 @@ constexpr OutputIt sh_vector_to_cilm( const InputIt vector_first, const InputIt 
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  SHVectorToCilm( &*vector_first, n, &*cilm_first, cilm_dim, degmax, &exitstatus);
+  SHVectorToCilm( &*vector_first, &*cilm_first, cilm_dim, degmax, &exitstatus);
   
   return cilm_first;
 }
@@ -137,29 +137,11 @@ constexpr OutputIt sh_cilm_to_vector( const InputIt cilm_first, const InputIt ci
   if(degmax < 0){
       degmax = cilm_dim-1;
   }
-  SHCilmToVector( &*cilm_first, &*vector_first, degmax, &exitstatus);
+  SHCilmToVector( &*cilm_first, cilm_dim, &*vector_first, degmax, &exitstatus);
   
   
   return vector_first;
 }
-
-// inline std::vector<double>
-// sh_cindex_to_cilm( std::vector<double> cindex, int degmax=-1)
-// {
-//   
-//   int n = cindex.size() / 2;
-//   int cilm_dim = n_to_deg(n)+1;
-//   
-//   if(degmax < 0){
-//       degmax = cilm_dim-1;
-//   }
-//     
-//   std::vector<double> cilm(2 * cilm_dim * cilm_dim);
-//   sh_cindex_to_cilm(cindex.cbegin(), cindex.cend(), cilm.begin(), degmax);
-//   
-//   return cilm;
-// }
-
 
 inline std::vector<double>
 sh_read(const std::string& filename,
@@ -174,20 +156,17 @@ sh_read(const std::string& filename,
   std::vector<double> cilm(2 * cilm_dim * cilm_dim);
 
   double* error_ptr = nullptr;
-  int error_dim = 0;
   if (error) {
     error_ptr = &error->at(0);
-    error_dim = cilm_dim;
     error->resize(cilm.size());
   }
 
   double* header = nullptr;
   int header_d = 0;
 
-  int s = filename.size();
 
   SHRead(filename.c_str(),
-          s,
+         filename.size(),
           &cilm[0],
           cilm_dim,
           &degree,
@@ -195,9 +174,6 @@ sh_read(const std::string& filename,
           header,
           header_d,
           error_ptr,
-          2,
-          error_dim,
-          error_dim,
           &exitstatus);
 
   return cilm;

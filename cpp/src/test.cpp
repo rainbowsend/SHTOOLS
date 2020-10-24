@@ -1,17 +1,3 @@
-
-#include <iomanip>
-#include <iostream>
-#include <math.h>
-#include <memory>
-#include <stdexcept>
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
-
-#include <Eigen/Core>
-#include <Eigen/Dense>
-#include <unsupported/Eigen/CXX11/Tensor>
-
 #include "shtools_cpp.h"
 
 int
@@ -21,52 +7,14 @@ main(int argc, char** argv)
   std::string infile = "../examples/ExampleDataFiles/MarsTopo719.shape";
 
   int lmax = 15;
-  int n = lmax + 1;
-  std::vector<double> mars = shtools::sh_read(infile, lmax);
 
-  Eigen::TensorMap<shtools::Cilm> mars_tensor(&mars[0], 2, n, n);
+  shtools::ShCoeff mars = shtools::sh_read(infile, lmax);
 
-  for (int i = 0; i < 2; ++i) {
-    for (int j = 0; j < n; ++j) {
-      for (int k = 0; k < n; ++k) {
-        std::cout << std::setw(12) << std::setprecision(3)
-                  << mars_tensor(i, j, k) << " ";
-      }
-      std::cout << std::endl;
-    }
-    std::cout << std::string(13 * n, '-') << std::endl;
-  }
+  std::cout << mars << std::endl;
 
   double val = shtools::make_grid_point(mars.begin(), mars.end(), 10.0, 30.0);
   std::cout << std::setprecision(16) << val << std::endl;
   std::cout << "diff to python " << val - 3395259.548270001 << std::endl;
-  
-  
-  Eigen::RowVectorXd vector(n*n);
-  
-  shtools::sh_cilm_to_vector(mars.begin(), mars.end(), vector.begin());
-  std::cout << vector << std::endl;
-  shtools::sh_vector_to_cilm(vector.begin(), vector.end(), mars.begin());
-  
-  Eigen::TensorMap<shtools::Cilm> mars_tensor2(&mars[0], 2, n, n);
-
-  for (int i = 0; i < 2; ++i) {
-    for (int j = 0; j < n; ++j) {
-      for (int k = 0; k < n; ++k) {
-        std::cout << std::setw(12) << std::setprecision(3)
-                  << mars_tensor2(i, j, k) << " ";
-      }
-      std::cout << std::endl;
-    }
-    std::cout << std::string(13 * n, '-') << std::endl;
-  }
-
-
-  //   std::vector<double> cindex(90,1);
-  //   std::vector<double> cilm(2*8*8);
-  //
-  //
-  //   cpp_sh_cindex_to_cilm(cindex, cilm, degmax);
 
   return 0;
 }

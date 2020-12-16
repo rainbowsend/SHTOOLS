@@ -23,9 +23,9 @@ Expand an equally sampled or equally spaced grid into spherical harmonics using 
 `grid` : dimension (`n`, `n`) or (`n`, 2\*`n`)
 :   A 2D equally sampled (default) or equally spaced grid that conforms to the sampling theorem of Driscoll and Healy (1994). The first latitudinal band corresponds to 90 N, the latitudinal band for 90 S is not included, and the latitudinal sampling interval is 180/`n` degrees. The first longitudinal band is 0 E, the longitude band for 360 E is not included, and the longitudinal sampling interval is 360/`n` for an equally and 180/`n` for an equally spaced grid, respectively.
 
-`grid_d0` : number of rows in `grid`
+`grid_d0` : number of rows in `grid`. Same as `n`
 
-`grid_d1` : number of columns in `grid`
+`grid_d1` : number of columns in `grid`.  Either `n`, or 2\*`n`
 
 `n` : 
 :   The number of samples in latitude of `grid`. If `sampling` is 1 (default) then the number of samples in longitude is `n`. If `sampling` is 2 then the number of longitudinal samples is `2n`. `n` must be even.

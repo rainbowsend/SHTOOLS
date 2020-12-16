@@ -1,10 +1,10 @@
-The cpp interface is as consitent as possible to the Fortran interface. That means the cpp function and argument names are equivalent to the fortran names. Moreover, we use the same order of arguments. However, additional arguments are requiered for Fortran arrays with assumed shape and character arrays. These additional arguments are inserted behind the corrsponding array argument. 
+The cpp interface is as consistent as possible to the Fortran interface. That means the cpp function and argument names are equivalent to the Fortran names. Moreover, we use the same order of arguments. However, additional arguments are required for Fortran arrays with assumed shape and character arrays. These additional arguments are inserted behind the corresponding array argument. 
 
 # Arrays
-For the cpp interface any datastructure that satisfies the following conditions can be used as 'array' argument:
+For the cpp interface any data structure that satisfies the following conditions can be used as 'array' argument:
 
 * The elements must be stored in column-major order
-* The datatypes must agree
+* The data types must agree
 * The size must be the same (the total number of elements)
 
 For example the Fortran Array
@@ -20,9 +20,9 @@ could be represented in cpp by:
 * ` Eigen::Matrix<double,5,10,Eigen::ColMajor>; `
 * ...
 
-In the first four cases it is the users responsibillity to ensure column-major order.
+In the first four cases it is the users responsibility to ensure column-major order.
 
-Fortran arrays are passed by reference, thus in cpp we need to pass the adress of the first element of the data structure. Additionally, we need to provide the dimension of the corrsponding array. This is done with additional arguments. For example, the subroutine/function `Curve2Mask` has four additional arguments (`dhgrid_d0`,`dhgrid_d1`,`profile_d0`,`profile_d1`) specifing the size of the arrays `dhgrid` and `profile`.
+Fortran arrays are passed by reference, thus in cpp we need to pass the address of the first element of the data structure. Additionally, we need to provide the dimension of the corresponding array. This is done with additional arguments. For example, the subroutine/function `Curve2Mask` has four additional arguments (`dhgrid_d0`,`dhgrid_d1`,`profile_d0`,`profile_d1`) specifying the size of the arrays `dhgrid` and `profile`.
 
 ``` fortran
 subroutine Curve2Mask(dhgrid, n, sampling, profile, nprofile, NP, &
@@ -51,7 +51,7 @@ void Curve2Mask(int* dhgrid,
 ```
 
 # Optional arguments
-Arguments that are optional in the Fortran interface are assigned with a default value in the cpp interface. Passing a null pointer in cpp is equivalent to not specifing the argument in Fortran. Thus, optional arguments are pointers in cpp. An exception are additional arguments for the dimension of optional arrays. Those are passed by value and are set to zero by default.
+Arguments that are optional in the Fortran interface are assigned with a default value in the cpp interface. Passing a null pointer in cpp is equivalent to not specifying the argument in Fortran. Thus, optional arguments are pointers in cpp. An exception are additional arguments for the dimension of optional arrays. Those are passed by value and are set to zero by default.
 
 # Intent keyword
 Fortran `intent(in)` arguments are `const` in the cpp interface.
